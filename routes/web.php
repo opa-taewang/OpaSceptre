@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+Route::get('/product-quick-view', function () {
+    return view('ajax.product-quick-view');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
