@@ -23,6 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('custom/style.min.css')}}">
 </head>
 <body id="app">
     <div class="page-wrapper">
@@ -31,6 +32,7 @@
 
         <main class="main">
             @yield('content')
+        </main><!-- End .main -->
 
             @include('layouts.footer')
         <!-- End .footer -->
@@ -40,7 +42,7 @@
     @include('layouts.mobile')
 
     {{-- Newsletter Pop up --}}
-    @include('layouts.newsletter')
+    {{-- @include('layouts.newsletter') --}}
 
     {{-- Add Cart Modal --}}
     @include('layouts.cart')
@@ -49,5 +51,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700']
+            }
+        };
+        (function (d) {
+            var wf = d.createElement('script'),
+                s = d.scripts[0];
+            wf.src = '/js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
 </body>
 </html>

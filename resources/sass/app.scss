@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,300');
 
 // Variables
@@ -7,9 +8,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// AdminLTE
+// @import '~admin-lte/dist/css/adminlte.css';
+// @import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+
 // Custom Css
-@import 'custom/style.min.css';
+@import 'custom/bootstrap.min.css';
+// @import 'custom/style.min.css';
 @import 'custom/animate.min.css';
 // Font awesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
+
+// Datatables
+@import '~admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css';
+@import '~admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css';

@@ -4,26 +4,24 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- WebFontConfig = {
-     google: {
-         families: ['Open+Sans:300,400,600,700,800', 'Poppins:300,400,500,600,700']
-     }
- };
- (function (d) {
-     var wf = d.createElement('script'),
-         s = d.scripts[0];
-     wf.src = '/js/webfont.js';
-     wf.async = true;
-     s.parentNode.insertBefore(wf, s);
- })(document);
+
 require('./custom/jquery.min.js');
 require('./bootstrap');
-// require('./custom/bootstrap.bundle.min.js');
+require('./custom/bootstrap.bundle.min.js');
+
+// AdminLTE component
+// require('admin-lte');
+require('admin-lte/plugins/datatables/jquery.dataTables.min.js')
+require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')
+require('admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js')
+require('admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')
+require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')
+require('./custom.js')
+// Market component
 require('./custom/plugins.min.js');
 require('./custom/jquery.appear.min.js');
 // require('./custom/nouislider.min.js');
 require('./custom/main.min.js');
-
 
 window.Vue = require('vue');
 

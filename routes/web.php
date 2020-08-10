@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::post('/new', function() {
+    return view('new');
+});
+
+Route::get('pagenotfound', function () {
+    return view('errors.404');
+})->name('notfound');
+
 Route::get('/index', function () {
     return view('index');
 });
@@ -27,3 +35,10 @@ Route::get('/product-quick-view', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Admin route
+Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']],
+    function(){
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    }
+);
