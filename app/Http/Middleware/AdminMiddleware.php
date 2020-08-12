@@ -16,11 +16,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role->id == 1)
+        if(Auth::check())
         {
-            return $next($request);
-        }else{
-            return redirect()->route('login');
+          return (Auth::user()->role->id == 1) ? $next($request) : abort('503', "Not Allowed");
         }
+        return redirect()->route('login');
+        // ;
     }
 }

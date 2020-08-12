@@ -52,19 +52,24 @@ class Handler extends ExceptionHandler
     {
         if($this->isHttpException($exception))
         {
-            switch ($exception->getStatusCode()) {
-                case 404:
-                    return redirect()->route('notfound');
-                    break;
+            return $this->renderHttpException($exception);
+            // switch ($exception->getStatusCode()) {
+            //     case 404:
+            //         return redirect()->route('notfound');
+            //         break;
 
-                // case 405:
-                //     die("Not authorised");
-                //     break;
+            //     case 405:
+            //         return redirect()->route('notallowed');
+            //         break;
 
-                default:
-                    return parent::render($request, $exception);
-                    break;
-            }
+            //     case 503:
+            //         return redirect()->route('mustbeadmin');
+            //         break;
+
+            //     default:
+            //         return parent::render($request, $exception);
+            //         break;
+            // }
         }else{
             return parent::render($request, $exception);
         }

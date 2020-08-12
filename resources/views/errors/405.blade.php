@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-   <h1>Page not found<h1>
+   <h1>Not allowed<h1>
 @endsection
