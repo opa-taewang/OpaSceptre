@@ -202,9 +202,9 @@
                                             <div class="col-lg-8">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        @foreach (\App\FrontendController::menu as $item)
+                                                        {{-- @foreach (\App\FrontendController::menu as $item)
                                                             {{$item}}
-                                                        @endforeach
+                                                        @endforeach --}}
                                                         <div class="menu-title">
                                                             <a href="#">Variations 1<span class="tip tip-new">New!</span></a>
                                                         </div>
