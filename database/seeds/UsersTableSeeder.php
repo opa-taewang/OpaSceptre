@@ -15,16 +15,18 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'role_id' => 1,
-            'name' => 'admin',
-            'username' => 'opasceptre',
+            'first_name' => 'opasceptre',
+            'middle_name' => 'admin',
+            'last_name' => 'admin',
             'email' => 'opasceptre@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
 
         DB::table('users')->insert([
             'role_id' => 2,
-            'name' => 'Precious Ayobami Oladejo',
-            'username' => 'opa',
+            'first_name' => 'Precious',
+            'middle_name' => 'Ayobami',
+            'last_name' => 'Oladejo',
             'email' => 'oladejo.precious106@gmail.com',
             'password' => Hash::make('user123'),
         ]);

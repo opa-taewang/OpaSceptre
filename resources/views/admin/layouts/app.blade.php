@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Basic page needs-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>AdminLTE 3 | Starter</title>
+	<!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/storage/images/icons/favicon.ico">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -29,35 +34,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @include('admin.layouts.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-      {{--Main Contents --}}
-      @yield('content')
+    <div class="content-wrapper">
+        {{--Main Contents --}}
+        @yield('content')
+    </div>
+
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+            <h5>Title</h5>
+            <p>Sidebar content</p>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    @include('admin.layouts.footer')
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      A traffic management system you've always wanted.
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; {{date("Y",time())}} <a href="/">TraffiCMS</a>.</strong> All rights reserved.
-  </footer>
 </div>
 <!-- ./wrapper -->
 
 {{-- JS file --}}
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $(".custom-file-input").on("change", function () {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+@include('sweetalert::alert')
 </body>
 </html>

@@ -59,8 +59,14 @@
                             <div class="widget widget-newsletter">
                                 <h4 class="widget-title">Subscribe newsletter</h4>
                                 <p>Get all the latest information on events, sales and offers. Sign up for newsletter:</p>
-                                <form action="#">
-                                    <input type="email" class="form-control" placeholder="Email address" required>
+                                <form action="{{route('newsletter.store')}}" method="POST">
+                                    @csrf
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" name="email" required>
+                                     @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
 
                                     <input type="submit" class="btn" value="Go!">
                                 </form>

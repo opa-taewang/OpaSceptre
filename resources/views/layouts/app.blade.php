@@ -65,5 +65,6 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
+    @include('sweetalert::alert')
 </body>
 </html>
