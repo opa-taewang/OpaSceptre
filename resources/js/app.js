@@ -16,13 +16,15 @@ require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')
 require('admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js')
 require('admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')
 require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')
-require('./custom.js')
+require('admin-lte/plugins/summernote/summernote-bs4.min.js')
+
 // Sweet Alert
 require("sweetalert")
-// require("./admin/plugins/sweetalert2/sweetalert2.min.js");
 // Market component
 require('./custom/plugins.min.js');
 require('./custom/jquery.appear.min.js');
+// Tags Input
+require('./custom/tagsinput.js')
 // require('./custom/nouislider.min.js');
 require('./custom/main.min.js');
 // Dashboard 1
@@ -65,6 +67,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('product-status', require('./components/productStatus.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -77,3 +80,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+// Custom Javascript
+require('./custom.js')
+
+

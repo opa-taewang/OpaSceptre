@@ -110,7 +110,9 @@
                                     <div class="select-custom">
                                         <select id="cat" name="cat">
                                             <option value="">All Categories</option>
-                                            <option value="4">Fashion</option>
+                                            @foreach (App\FrontendControl::getCategory() as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div><!-- End .select-custom -->
                                     <button class="btn icon-search-3" type="submit"></button>
@@ -199,28 +201,29 @@
                                     <a href="category.html" class="sf-with-ul">Categories</a>
                                     <div class="megamenu megamenu-fixed-width">
                                         <div class="row">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8" id="categoryaccordion">
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        {{-- @foreach (\App\FrontendController::menu as $item)
-                                                            {{$item}}
-                                                        @endforeach --}}
-                                                        <div class="menu-title">
-                                                            <a href="#">Variations 1<span class="tip tip-new">New!</span></a>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a href="category-banner-full-width.html">Fullwidth Banner<span class="tip tip-hot">Hot!</span></a></li>
-                                                            <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
-                                                        </ul>
-                                                    </div><!-- End .col-lg-6 -->
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-title">
-                                                            <a href="#">Variations 2</a>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a href="category-list.html">Product List Item Types</a></li>
-                                                        </ul>
-                                                    </div><!-- End .col-lg-6 -->
+                                                    @foreach (App\FrontendControl::getCategory() as $category)
+                                                        @php
+                                                            $subcategory = DB::table('subcategories')->where('category_id', $category->id)->get();
+                                                        @endphp
+                                                         <div class="col-lg-6">
+                                                             <div>
+                                                                <a href="#category{{$category->id}}" data-toggle="collapse" aria-expanded="false" aria-controls="category{{$category->id}}"><h6>{{$category->category_name}}</h6></a>
+                                                             </div>
+                                                            <div class="collapse in" data-parent="#categoryaccordion" id="category{{$category->id}}">
+                                                                <hr class="mt-0 mb-1">
+                                                                    <div class="mt-0 font-weight-lighter">
+                                                                        @foreach ($subcategory as $subcategory)
+                                                                            <p class="ml-2">{{$subcategory->subcategory_name}}</p>
+                                                                        @endforeach
+                                                                    </div>
+                                                            </div>
+                                                            {{-- <ul class="dropdown-menu" role="menu" aria-labelledby="{{$item->id}}">
+                                                                <li role="presentation"><a role="menuitem" href="#">About Us</a></li>
+                                                            </ul> --}}
+                                                        </div><!-- End .col-lg-6 -->
+                                                    @endforeach
                                                 </div><!-- End .row -->
                                             </div><!-- End .col-lg-8 -->
                                             <div class="col-lg-4 pt-0 pr-0">
@@ -240,13 +243,18 @@
                                             <div class="col-lg-8">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <div class="menu-title">
-                                                            <a href="#">Product Page</a>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a href="product.html">Horizontal Thumbnails</a></li>
-                                                            <li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
+
+                                                        <ul class="dropdown">
+                                                            <li class="dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><a href="product.html">Horizontal Thumbnails</a></li>
+                                                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                                <li><a role="menuitem" href="#">HTML</a></li>
+                                                                <li><a role="menuitem" href="#">CSS</a></li>
+                                                                <li><a role="menuitem" href="#">JavaScript</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a role="menuitem" href="#">About Us</a></li>
+                                                            </ul>
                                                         </ul>
+
                                                     </div><!-- End .col-lg-6 -->
                                                     <div class="col-lg-6">
                                                         <div class="menu-title">

@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/tagsinput.css')}}">
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -65,6 +68,10 @@
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 </script>
+<script>
+
+</script>
+<script src="{{asset('admin/custom.js')}}"></script>
 @include('sweetalert::alert')
 </body>
 </html>

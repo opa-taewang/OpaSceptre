@@ -36,7 +36,7 @@
             {{-- Category --}}
             <li class="nav-item has-treeview {{'category' == request()->segment(2) || 'subcategory' == request()->segment(2) || 'brand' == request()->segment(2)? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{'category' == request()->segment(2) || 'subcategory' == request()->segment(2) || 'brand' == request()->segment(2)? 'active' : ''}}">
-                    <i class="fas fa-code-branch"></i>
+                    <i class="nav-icon fas fa-code-branch"></i>
                 <p>
                     Category
                     <i class="right fas fa-angle-left"></i>
@@ -66,10 +66,40 @@
           </li>
           {{-- Category Ended --}}
 
+          {{-- Products --}}
+            <li class="nav-item has-treeview {{'product' == request()->segment(2) ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{'product' == request()->segment(2) ? 'active' : ''}}">
+                    <i class="nav-icon fab fa-product-hunt"></i>
+                <p>
+                    Product
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                {{-- Branch of Starter page --}}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('admin.product.create')}}" class="nav-link {{'admin/product/add' == request()->path() ? 'active' : ''}}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Product</p>
+                        </a>
+                    </li>
+                </ul>
+
+                {{-- Branch of Starter page --}}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('admin.product.index')}}" class="nav-link {{'admin/product' == request()->path() ? 'active' : ''}}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Product</p>
+                        </a>
+                    </li>
+                </ul>
+          </li>{{-- Product Ended --}}
+
           {{-- Coupon --}}
             <li class="nav-item has-treeview {{'coupon' == request()->segment(2) ? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{'coupon' == request()->segment(2) ? 'active' : ''}}">
-                    <i class="fas fa-percent"></i>
+                    <i class="nav-icon fas fa-tags"></i>
                 <p>
                     Coupons
                     <i class="right fas fa-angle-left"></i>
@@ -89,7 +119,7 @@
           {{-- Others --}}
             <li class="nav-item has-treeview {{'newsletter' == request()->segment(2) ? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{'newsletter' == request()->segment(2) ? 'active' : ''}}">
-                    <i class="fas fa-percent"></i>
+                    <i class="nav-icon fas fa-percent"></i>
                 <p>
                     Others
                     <i class="right fas fa-angle-left"></i>

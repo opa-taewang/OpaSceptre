@@ -16,4 +16,10 @@ $(function () {
 });
 
 // Add the following code if you want the name of the file appear on select
+// SummerNote
+$(function () {
+    // Summernote
+    $('.textareaDetails').summernote()
+})
+
 

@@ -33,6 +33,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // Frontend Settings
 Route::post('/newsletter', 'FrontendController@newsletterStore')->name('newsletter.store');
+Route::get('/product', 'FrontendController@getSubCategory')->name('subcategory.get');
 // Admin route
 Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']],
     function(){
@@ -58,6 +59,22 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::patch('/brand/{brand}', 'Brand\BrandController@update')->name('brand.update');
         Route::delete('/brand/{brand}', 'Brand\BrandController@delete')->name('brand.delete');
 
+        // Product
+        Route::get('/product', 'Product\ProductController@index')->name('product.index');
+        Route::get('/product/add', 'Product\ProductController@create')->name('product.create');
+        Route::post('/product', 'Product\ProductController@store')->name('product.store');
+        // Product Options
+        Route::get('/product/{product}/edit', 'Product\ProductController@edit')->name('product.edit');
+        Route::patch('/product/{product}', 'Product\ProductController@update')->name('product.update');
+        Route::patch('/product/{product}/image', 'Product\ProductController@updateImage')->name('product.updateImage');
+        Route::get('/product/{product}', 'Product\ProductController@show')->name('product.show');
+        Route::get('/product/{product}/status', 'Product\ProductController@status');
+        Route::post('/product/{product}', 'Product\ProductController@status')->name('product.status');
+        Route::delete('/product/{product}', 'Product\ProductController@delete')->name('product.delete');
+
+
+        // Ajax Get
+        Route::get('get/subcategory/{category}', 'Product\ProductController@getSubCategory')->name('subcategory.get');
         // Coupon
         Route::get('/coupon', 'coupon\CouponController@index')->name('coupon.show');
         Route::post('/coupon', 'Coupon\CouponController@create')->name('coupon.create');

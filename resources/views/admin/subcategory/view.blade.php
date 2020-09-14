@@ -54,8 +54,8 @@
                             <td>{{$row + 1}}</td>
                             <td>{{$subcategory->subcategory_name}}</td>
                             <td>{{$subcategory->category->category_name}}</td>
-                            <td class="row">
-                                <a class="btn btn-info" href="{{route('admin.subcategory.edit', $subcategory->id)}}"><i class="far fa-edit"></i> Edit</a>
+                            <td class="row border-0">
+                                <a class="btn btn-info mx-3" href="{{route('admin.subcategory.edit', $subcategory->id)}}"><i class="far fa-edit"></i> Edit</a>
                                 <form method="post" action="{{route('admin.subcategory.delete', $subcategory->id)}}">
                                     @csrf
                                     @method('delete')

@@ -22,7 +22,7 @@ class BrandController extends Controller
      public function create(Request $request)
     {
         $data = $request->validate([
-            'brand_name' => ['required', 'min:3', 'alpha'],
+            'brand_name' => ['required', 'min:3', 'alpha', 'unique:brands'],
             'brand_logo' => ['required', 'min:3', 'image']
         ]);
         $brand_logo = request('brand_logo')->store('brand', 'public');
@@ -49,6 +49,8 @@ class BrandController extends Controller
         } else {
             // Update brand logo
             if(request('brand_logo')){
+                $image = 'storage/' . $brand->brand_logo;
+                unlink($image);
                 $brand_logo = request('brand_logo')->store('brand', 'public');
                 $brand->update(['brand_logo' => $brand_logo]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
             }

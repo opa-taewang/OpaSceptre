@@ -26,7 +26,7 @@ class SubCategoryController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'subcategory_name' => ['required', 'min:3', 'alpha_dash'],
+            'subcategory_name' => ['required', 'min:3'],
             'category' => ['required', 'numeric']
         ]);
         SubCategory::create([

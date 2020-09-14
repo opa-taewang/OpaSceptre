@@ -51,8 +51,8 @@
                             <td>{{$row + 1}}</td>
                             <td>{{$brand->brand_name}}</td>
                             <td><img class="img-fluid" src="/storage/{{$brand->brand_logo}}" alt="{{$brand->brand_name}} Logo" width="100px"></td>
-                            <td class="row">
-                                <a class="btn btn-info" href="{{route('admin.brand.edit', $brand->id)}}"><i class="far fa-edit"></i> Edit</a>
+                            <td class="row border-0">
+                                <a class="btn btn-info mx-3" href="{{route('admin.brand.edit', $brand->id)}}"><i class="far fa-edit"></i> Edit</a>
                                 <form method="post" action="{{route('admin.brand.delete', $brand->id)}}">
                                     @csrf
                                     @method('delete')
@@ -64,9 +64,10 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
+                    <th>S/N</th>
+                    <th>Brand Name</th>
+                    <th>Brand Logo</th>
+                    <th>Options</th>
                   </tr>
                   </tfoot>
                 </table>
