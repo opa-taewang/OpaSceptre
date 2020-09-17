@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Admin\Brand;
 use App\Model\Admin\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -18,5 +19,10 @@ class FrontendControl extends Model
         $subcategory = DB::table('subcategories')
                             ->where('category_id', $categoryId)
                             ->get();
+    }
+
+    public static function brands()
+    {
+        return Brand::get();
     }
 }

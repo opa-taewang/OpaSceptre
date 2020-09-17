@@ -4,38 +4,38 @@
 			<div class="product-slider-container">
 				<div class="product-single-carousel owl-carousel owl-theme">
 					<div class="product-item">
-						<img class="product-single-image" src="/storage/images/products/product-23.jpg" data-zoom-image="/storage/images/products/product-23.jpg"/>
+						<img class="product-single-image" src="/storage/{{$product->image_one}}" data-zoom-image="/storage/{{$product->image_one}}"/>
 					</div>
 					<div class="product-item">
-						<img class="product-single-image" src="/storage/images/products/product-24.jpg" data-zoom-image="/storage/images/products/product-24.jpg"/>
+						<img class="product-single-image" src="/storage/{{$product->image_two}}" data-zoom-image="/storage/{{$product->image_two}}"/>
 					</div>
 					<div class="product-item">
-						<img class="product-single-image" src="/storage/images/products/product-25.jpg" data-zoom-image="/storage/images/products/product-25.jpg"/>
+						<img class="product-single-image" src="/storage/{{$product->image_three}}" data-zoom-image="/storage/{{$product->image_three}}"/>
 					</div>
 					<div class="product-item">
-						<img class="product-single-image" src="/storage/images/products/product-26.jpg" data-zoom-image="/storage/images/products/product-26.jpg"/>
+						<img class="product-single-image" src="/storage/{{$product->image_four}}" data-zoom-image="/storage/{{$product->image_four}}"/>
 					</div>
 				</div>
 				<!-- End .product-single-carousel -->
 			</div>
 			<div class="prod-thumbnail owl-dots" id='carousel-custom-dots'>
 				<div class="owl-dot">
-					<img src="/storage/images/products/product-23.jpg"/>
+					<img src="/storage/{{$product->image_one}}"/>
 				</div>
 				<div class="owl-dot">
-					<img src="/storage/images/products/product-24.jpg"/>
+					<img src="/storage/{{$product->image_two}}"/>
 				</div>
 				<div class="owl-dot">
-					<img src="/storage/images/products/product-25.jpg"/>
+					<img src="/storage/{{$product->image_three}}"/>
 				</div>
 				<div class="owl-dot">
-					<img src="/storage/images/products/product-26.jpg"/>
+					<img src="/storage/{{$product->image_four}}"/>
 				</div>
 			</div>
 		</div><!-- End .product-single-gallery -->
 
 		<div class="col-lg-6 product-single-details">
-			<h1 class="product-title">Silver Porto Headset</h1>
+			<h1 class="product-title">{{$product->product_name}}</h1>
 
 			<div class="ratings-container">
 				<div class="product-ratings">
@@ -51,13 +51,18 @@
 			</div><!-- End .price-box -->
 
 			<div class="product-desc">
-				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
+				<p>{!!$product->product_details!!}</p>
 			</div><!-- End .product-desc -->
 
 			<div class="product-filters-container">
 				<div class="product-single-filter">
 					<label>Colors:</label>
 					<ul class="config-swatch-list">
+                        @php
+                            $colour = $product->product_colour;
+                            // $colour = explode($product->product_colour, ",");
+                        @endphp
+                        {{$colour}}
 						<li class="active">
 							<a href="#" style="background-color: #0188cc;"></a>
 						</li>

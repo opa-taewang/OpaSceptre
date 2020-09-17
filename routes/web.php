@@ -12,25 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+// Home Routes
+Route::get('/', 'HomeController@index');
+Route::get('/index', 'HomeController@index')->name( 'index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/new', function() {
     return view('new');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
-
-Route::get('/product-quick-view', function () {
-    return view('ajax.product-quick-view');
-});
+Route::get('/product-quick-view/{product}', 'FrontendController@quickview')->name('quickview');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 // Frontend Settings
 Route::post('/newsletter', 'FrontendController@newsletterStore')->name('newsletter.store');
 Route::get('/product', 'FrontendController@getSubCategory')->name('subcategory.get');
