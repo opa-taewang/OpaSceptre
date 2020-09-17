@@ -67,9 +67,10 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
+                    <th>S/N</th>
+                    <th>SubCategory Name</th>
+                    <th>Category Name</th>
+                    <th>Options</th>
                   </tr>
                   </tfoot>
                 </table>

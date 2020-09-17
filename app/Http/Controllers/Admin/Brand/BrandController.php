@@ -26,7 +26,7 @@ class BrandController extends Controller
             'brand_logo' => ['required', 'min:3', 'image']
         ]);
         $brand_logo = request('brand_logo')->store('brand', 'public');
-        Image::make(public_path("storage/{$brand_logo}"))->resize(140, 60)->save();
+        Image::make("storage/{$brand_logo}")->resize(140, 60)->save();
         Brand::create([
             'brand_name' => $request->input('brand_name'),
             'brand_logo' => $brand_logo
@@ -53,7 +53,7 @@ class BrandController extends Controller
                 $image = 'storage/' . $brand->brand_logo;
                 unlink($image);
                 $brand_logo = request('brand_logo')->store('brand', 'public');
-                Image::make(public_path("storage/{$brand_logo}"))->resize(140, 60)->save();
+                Image::make("storage/{$brand_logo}")->resize(140, 60)->save();
                 $brand->update(['brand_logo' => $brand_logo]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
             }
             // Update brand name
