@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $data  = $request->validate([
-            'category_name' => ['required', 'min:3']
+            'category_name' => ['required', 'min:3', 'unique:categories']
         ]);
         if($request->input('category_name') === $category->category_name){
             toast('There is nothing to update!', 'info');
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $data  = $request->validate([
-            'category_name' => ['required', 'min:3']
+            'category_name' => ['required', 'min:3', 'unique:categories']
         ]);
         Category::create($data) ? toast('Added Successfully!', 'success'): '';
         return redirect()->route('admin.category.show');
