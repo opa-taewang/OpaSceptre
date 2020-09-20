@@ -256,7 +256,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image_one') is-invalid @enderror" name="image_one" onchange="readURL(this);" id="customFile">
                                     <label class="custom-file-label @error('image_one') is-invalid @enderror" for="customFile">Choose file</label>
-                                    <img class="mb-5 mt-2 ml-5 w-25" id="one" src="/storage/{{$product->image_one}}">
+                                    <img class="mb-5 mt-2 ml-5 w-25" id="one" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_one}}">
                                     @error('image_one')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -271,7 +271,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image_two') is-invalid @enderror" name="image_two" onchange="readURL2(this);" id="customFile">
                                     <label class="custom-file-label @error('image_two') is-invalid @enderror" for="customFile">Choose file</label>
-                                    <img class="mb-5 mt-2 ml-5 w-25" id="two" src="/storage/{{$product->image_two}}">
+                                    <img class="mb-5 mt-2 ml-5 w-25" id="two" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_two}}">
                                     @error('image_two')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -288,7 +288,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image_three') is-invalid @enderror" name="image_three" onchange="readURL3(this);" id="customFile">
                                     <label class="custom-file-label @error('image_three') is-invalid @enderror" for="customFile">Choose file</label>
-                                    <img class="mb-5 mt-2 ml-5 w-25" id="three" src="/storage/{{$product->image_three}}">
+                                    <img class="mb-5 mt-2 ml-5 w-25" id="three" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_three}}">
                                     @error('image_three')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -302,7 +302,7 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('image_four') is-invalid @enderror" name="image_four" onchange="readURL4(this);" id="customFile">
                                     <label class="custom-file-label @error('image_four') is-invalid @enderror" for="customFile">Choose file</label>
-                                    <img class="mb-5 mt-2 ml-5 w-25" id="four" src="/storage/{{$product->image_four}}">
+                                    <img class="mb-5 mt-2 ml-5 w-25" id="four" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_four}}">
                                     @error('image_four')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

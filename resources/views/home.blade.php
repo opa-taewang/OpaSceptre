@@ -6,7 +6,7 @@
             <div class="home-slider owl-carousel owl-theme owl-theme-light nav-pos-outside show-nav-hover slide-animate">
                 @foreach ($main_slider as $homeslider)
                     <div class="home-slide">
-                    <div class="slide-bg owl-lazy" src="/storage/{{$homeslider->image_one}}" data-src="/storage/{{$homeslider->image_one}}"></div><!-- End .slide-bg -->
+                    <div class="slide-bg owl-lazy" src="https://res.cloudinary.com/opasceptre/image/upload/{{$homeslider->image_one}}" data-src="https://res.cloudinary.com/opasceptre/image/upload/{{$homeslider->image_one}}"></div><!-- End .slide-bg -->
                     <div class="home-slide-content sale-banner">
                         <div class="row no-gutter bg-primary appear-animate" data-animation-name="fadeInLeftShorter">
                             <div class="col-auto col-md-6 d-flex flex-column justify-content-center col-1">
@@ -41,7 +41,7 @@
                     <div class="heading-spacer"></div>
                     <div class="banner banner-image">
                         <a href="#">
-                            <img src="/storage/{{$midslider->image_one}}" width="360" height="270" alt="banner"/>
+                            <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$midslider->image_one}}" width="360" height="270" alt="banner"/>
                         </a>
                         <div class="banner-meta">
                             <a href="#">{{$midslider->product_name}}</a>
@@ -78,11 +78,11 @@
                 <div class="product-default inner-quickview inner-icon">
                     <figure>
                         <a href="product.html">
-                            <img src="/storage/{{$trending->image_one}}" alt="product" width="300" height="300"/>
-                            <img src="/storage/{{$trending->image_two}}" alt="product" width="300" height="300"/>
+                            <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_one}}" alt="product" width="300" height="300"/>
+                            <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_two}}" alt="product" width="300" height="300"/>
                         </a>
                         <div class="btn-icon-group">
-                            <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-shopping-cart"></i></button>
+                            <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="fas fa-shopping-bag"></i></button>
                         </div>
                         <a href="{{route('quickview', $trending->id)}}" class="btn-quickview" title="Quick View">Quick View</a>
                     </figure>
@@ -93,7 +93,7 @@
                                 <a href="category.html" class="product-category">{{$trending->category_name}}</a>,
                                 <a href="subcategory.html" class="product-category">{{$trending->subcategory_name}}</a>
                             </div>
-                            <a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
+                            <a href="#" class="btn-icon-wish"><i class="far fa-heart"></i></a>
                         </div>
                         <h3 class="product-title">
                             <a href="product.html">{{$trending->product_name}}</a>
@@ -149,8 +149,8 @@
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
                             <a href="product.html">
-                                <img src="/storage/{{$bestrated->image_one}}" width="175" height="175" alt="product" />
-                                <img src="/storage/{{$bestrated->image_two}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$bestrated->image_one}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$bestrated->image_two}}" width="175" height="175" alt="product" />
                             </a>
                         </figure>
                         <div class="product-details">
@@ -189,8 +189,8 @@
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
                             <a href="product.html">
-                                <img src="/storage/{{$hotdeal->image_one}}" width="175" height="175" alt="product" />
-                                <img src="/storage/{{$hotdeal->image_two}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotdeal->image_one}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotdeal->image_two}}" width="175" height="175" alt="product" />
                             </a>
                         </figure>
                         <div class="product-details">
@@ -227,8 +227,8 @@
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
                             <a href="product.html">
-                                <img src="/storage/{{$hotnew->image_one}}" width="175" height="175" alt="product" />
-                                <img src="/storage/{{$hotnew->image_two}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotnew->image_one}}" width="175" height="175" alt="product" />
+                                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotnew->image_two}}" width="175" height="175" alt="product" />
                             </a>
                         </figure>
                         <div class="product-details">
@@ -268,7 +268,7 @@
                 $brands = App\FrontendControl::brands();
             @endphp
             @foreach ($brands as $brand)
-                <img src="/storage/{{$brand->brand_logo}}" width="140"  height="60" alt="logo" />
+                <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$brand->brand_logo}}" width="140"  height="60" alt="logo" />
             @endforeach
         </div><!-- End .partners-carousel -->
     </div><!-- End .container -->
@@ -277,16 +277,16 @@
         <h3 class="subtitle text-uppercase">Follow On Instagram</h3>
         <div class="heading-spacer"></div>
         <div class="owl-carousel instagram-feed-carousel instagram-feed-list">
-            <a href="#"><img src="/storage/images/instagram/1.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/2.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/3.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/4.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/5.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/6.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/7.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/8.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/9.jpg" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="/storage/images/instagram/10.jpg" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/g" width="197" height="150" alt="Feed"></a>
         </div><!-- End .instagram-feed-carousel -->
     </div><!-- End .instagram-section -->
 </main><!-- End .main -->

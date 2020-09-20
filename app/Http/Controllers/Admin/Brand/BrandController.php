@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Brand;
 
-use App\Http\Controllers\Controller;
+use Cloudinary;
 use App\Model\Admin\Brand;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class BrandController extends Controller
@@ -25,11 +26,17 @@ class BrandController extends Controller
             'brand_name' => ['required', 'min:3', 'alpha', 'unique:brands'],
             'brand_logo' => ['required', 'min:3', 'image']
         ]);
-        $brand_logo = request('brand_logo')->store('brand', 'public');
-        // Image::make("storage/{$brand_logo}")->resize(140, 60)->save();
+        $brand_logo = $request->file('brand_logo')->getRealPath();
+        $brand_logo = Cloudinary\Uploader::upload($brand_logo, array(
+            "width" => 140,
+            "height" => 60,
+            "crop" => "pad",
+            "use_filename" => true,
+            "folder" => "brands/"
+        ));
         Brand::create([
             'brand_name' => $request->input('brand_name'),
-            'brand_logo' => $brand_logo
+            'brand_logo' => $brand_logo['public_id']
         ]) ? toast('Brand added successfully') : '';
         return redirect()->route('admin.brand.show');
     }
@@ -50,11 +57,17 @@ class BrandController extends Controller
         } else {
             // Update brand logo
             if(request('brand_logo')){
-                $image = 'storage/' . $brand->brand_logo;
-                unlink($image);
-                $brand_logo = request('brand_logo')->store('brand', 'public');
-                Image::make("storage/{$brand_logo}")->resize(140, 60)->save();
-                $brand->update(['brand_logo' => $brand_logo]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+                $ch = curl_init('https://res.cloudinary.com/opasceptre/image/upload/v1600627348/' . $brand->brand_logo);
+                curl_exec($ch);
+                curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200 ? Cloudinary\Uploader::destroy($brand->brand_logo) : '';
+                $brand_logo = $request->file('brand_logo')->getRealPath();
+                $brand_logo = Cloudinary\Uploader::upload($brand_logo, array(
+                    "width" => 140,
+                    "height" => 60,
+                    "crop" => "pad",
+                    "use_filename" => false,
+                    "folder" => "brands/"));
+                $brand->update(['brand_logo' => $brand_logo['public_id']]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
             }
             // Update brand name
             $brand->update(['brand_name' => $request->input('brand_name')]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
@@ -65,8 +78,9 @@ class BrandController extends Controller
 
     public function delete(Brand $brand)
     {
-        $image = 'storage/'.$brand->brand_logo;
-        unlink($image);
+        $ch = curl_init('https://res.cloudinary.com/opasceptre/image/upload/v1600627348/'.$brand->brand_logo);
+            curl_exec($ch);
+            curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200 ? Cloudinary\Uploader::destroy($brand->brand_logo) : '';
         $brand->delete($brand) ? toast('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.brand.show');
     }

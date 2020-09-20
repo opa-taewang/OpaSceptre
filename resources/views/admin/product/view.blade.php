@@ -117,24 +117,24 @@
 
                     <div class="row mb-3">
                         <div class="col-md-3">
-                            <label for="video_link">Image One(Main Thumbnail):</label>
-                            <img class="img-fluid" src="/storage/{{$product->image_one}}" alt="">
+                            <label for="img_one">Image One(Main Thumbnail):</label>
+                            <img class="img-fluid" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_one}}" alt="">
                         </div>
 
                         <div class="col-md-3">
-                            <label for="video_link">Image Two:</label>
-                            <img class="img-fluid" src="/storage/{{$product->image_two}}" alt="">
+                            <label for="img_two">Image Two:</label>
+                            <img class="img-fluid" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_two}}" alt="">
 
                         </div>
 
                         <div class="col-md-3">
-                            <label for="video_link">Image Three:</label>
-                            <img class="img-fluid" src="/storage/{{$product->image_three}}" alt="">
+                            <label for="img_three">Image Three:</label>
+                            <img class="img-fluid" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_three}}" alt="">
                         </div>
 
                         <div class="col-md-3">
-                            <label for="video_link">Image Four:</label>
-                            <img class="img-fluid" src="/storage/{{$product->image_four}}" alt="">
+                            <label for="img_four">Image Four:</label>
+                            <img class="img-fluid" src="https://res.cloudinary.com/opasceptre/image/upload/{{$product->image_four}}" alt="">
                         </div>
                     </div>
 

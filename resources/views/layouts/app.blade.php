@@ -14,12 +14,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <meta name="keywords" content="HTML5 Template" />
+    <meta name="keywords" content="HTML5 Template"/>
     <meta name="description" content="Porto - Bootstrap eCommerce Template">
     <meta name="author" content="SW-THEMES">
 
     <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

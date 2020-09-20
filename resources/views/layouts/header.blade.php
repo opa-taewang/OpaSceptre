@@ -66,7 +66,7 @@
                         </ul>
                         <span class="separator d-none d-xl-block"></span>
                         <div class="share-links d-none d-xl-block">
-                            <a target="_blank" rel="nofollow" class="share-facebook icon-facebook" href="#" title="Facebook"></a>
+                            <a target="_blank" rel="nofollow" class="share-facebook icon-facebook" href="#" title="Facebook"><i class="fas fa-facebook-f"></i></a>
                             <a target="_blank" rel="nofollow" class="share-twitter icon-twitter" href="#" title="Twitter"></a>
                             <a target="_blank" rel="nofollow" class="share-instagram icon-instagram" href="#" title="Instagram"></a>
                         </div>
@@ -82,7 +82,7 @@
                             <i class="icon-menu"></i>
                         </button>
                         <div class="header-contact d-none d-lg-flex align-items-center pl-1 mr-lg-5 pr-xl-2">
-                            <i class="icon-phone-2"></i>
+                            <i class="fas fa-phone-alt"></i>
                             <h6>Call us now<a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                         </div>
                     </div><!-- End .header-left -->
@@ -98,12 +98,12 @@
                         <div class="header-search header-search-popup header-search-category d-none d-sm-block">
                             {{-- Account Info --}}
                             @auth
-                                <a href="/login" class="header-icon"><i class="icon-user-2"></i></a>
+                                <a href="/login" class="header-icon"><i class="far fa-user"></i></a>
                             @endauth
                             {{-- Wish list --}}
-                            <a href="#" class="header-icon"><i class="icon-wishlist-2"></i></a>
+                            <a href="#" class="header-icon"><i class="far fa-heart"></i></a>
                             {{-- Search --}}
-                            <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
+                            <a href="#" class="search-toggle" role="button"><i class="fas fa-search"></i></a>
                             <form action="#" method="get">
                                 <div class="header-search-wrapper">
                                     <input type="search" class="form-control" name="q" id="q" placeholder="I'm searching for..." required="">
@@ -120,8 +120,8 @@
                             </form>
                         </div>
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle dropdown-arrow" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <i class="icon-shopping-cart"></i>
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <i class="fas fa-shopping-bag"></i>
                                 <span class="cart-count badge-circle">2</span>
                             </a>
                             <div class="dropdown-menu">
@@ -198,7 +198,7 @@
                             <ul class="menu sf-arrows">
                                 <li class="active"><a href="index-2.html">Home</a></li>
                                 <li>
-                                    <a href="category.html" class="sf-with-ul">Categories</a>
+                                    <a href="#">Categories &nbsp;<i class="fas fa-angle-down"></i></a>
                                     <div class="megamenu megamenu-fixed-width">
                                         <div class="row">
                                             <div class="col-lg-8" id="categoryaccordion">
@@ -235,52 +235,6 @@
                                             </div><!-- End .col-lg-4 -->
                                         </div>
                                     </div><!-- End .megamenu -->
-                                </li>
-                                <li class="megamenu-container">
-                                    <a href="product.html" class="sf-with-ul">Products</a>
-                                    <div class="megamenu">
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-
-                                                        <ul class="dropdown">
-                                                            <li class="dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><a href="product.html">Horizontal Thumbnails</a></li>
-                                                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                                                <li><a role="menuitem" href="#">HTML</a></li>
-                                                                <li><a role="menuitem" href="#">CSS</a></li>
-                                                                <li><a role="menuitem" href="#">JavaScript</a></li>
-                                                                <li class="divider"></li>
-                                                                <li><a role="menuitem" href="#">About Us</a></li>
-                                                            </ul>
-                                                        </ul>
-
-                                                    </div><!-- End .col-lg-6 -->
-                                                    <div class="col-lg-6">
-                                                        <div class="menu-title">
-                                                            <a href="#">Product Layout Types</a>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a href="product.html">Default Layout</a></li>
-                                                        </ul>
-                                                    </div><!-- End .col-lg-6 -->
-                                                </div><!-- End .row -->
-                                            </div><!-- End .col-lg-8 -->
-                                            <div class="col-lg-4 pt-0 pr-0">
-                                                <div class="banner">
-                                                    <a href="#">
-                                                        <img src="/storage/images/menu-banner.jpg" width="300" height="624" alt="Menu banner" class="product-promo" />
-                                                    </a>
-                                                </div><!-- End .banner -->
-                                            </div><!-- End .col-lg-4 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .megamenu -->
-                                </li>
-                                <li><a href="#" class="sf-with-ul">Features</a>
-                                    <ul>
-                                        <li><a href="#">Header Types</a></li>
-                                        <li><a href="#">Footer Types</a></li>
-                                    </ul>
                                 </li>
                                 <li>
                                     <a href="blog.html">Blog</a>

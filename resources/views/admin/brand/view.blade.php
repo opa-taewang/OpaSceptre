@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{$row + 1}}</td>
                             <td>{{$brand->brand_name}}</td>
-                            <td><img class="img-fluid" src="/storage/{{$brand->brand_logo}}" alt="{{$brand->brand_name}} Logo" width="100px"></td>
+                            <td><img class="img-fluid" src="https://res.cloudinary.com/opasceptre/image/upload/v1600627348/{{$brand->brand_logo}}" alt="{{$brand->brand_name}} Logo" width="100px"></td>
                             <td class="row border-0">
                                 <a class="btn btn-info mx-3" href="{{route('admin.brand.edit', $brand->id)}}"><i class="far fa-edit"></i> Edit</a>
                                 <form method="post" action="{{route('admin.brand.delete', $brand->id)}}">

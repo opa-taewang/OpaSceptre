@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Image;
+use Cloudinary;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 class ImageModel extends Model
 {
@@ -12,10 +13,16 @@ class ImageModel extends Model
     {
         foreach ($uploads as $value) {
             if (request($value)) {
-                $newPath = request($value)->store($path, 'public');
-                Image::make(public_path("storage/{$newPath}"))->resize(300, 300)->save();
+                $newPath = request($value)->getRealPath();
+                $imageUploaded = Cloudinary\Uploader::upload($newPath, array(
+                    "width" => 300,
+                    "height" => 300,
+                    "crop" => "pad",
+                    "use_filename" => false,
+                    "folder" => $path . "/"
+                ));
                 // Merge with $data
-                $data = array_merge($data, [$value => $newPath]);
+                $data = array_merge($data, [$value => $imageUploaded['public_id']]);
             }
         }
         return $data;
@@ -25,14 +32,19 @@ class ImageModel extends Model
     {
         foreach ($uploads as $key => $oldLink) {
             if (request($key)) {
-                $image = 'storage/' . $oldLink;
-                // dd($image);
-                // file_exists($image) ? dd('yes') : dd('No');
-                file_exists($image) ? unlink($image) : '';
-                $newPath = request($key)->store($path, 'public');
-                Image::make(public_path("storage/{$newPath}"))->resize(300, 300)->save();
+                $ch = curl_init('https://res.cloudinary.com/opasceptre/image/upload/v1600627348/' . $oldLink);
+                curl_exec($ch);
+                curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200 ? Cloudinary\Uploader::destroy($oldLink) : '';
+                $newPath = request($key)->getRealPath();
+                $imageUploaded = Cloudinary\Uploader::upload($newPath, array(
+                    "width" => 300,
+                    "height" => 300,
+                    "crop" => "pad",
+                    "use_filename" => false,
+                    "folder" => $path."/"
+                ));
                 // // Merge with $data
-                $data = array_merge($data, [$key => $newPath]);
+                $data = array_merge($data, [$key => $imageUploaded['public_id']]);
             }
         }
         // dd($uploads);
@@ -42,8 +54,9 @@ class ImageModel extends Model
     public static function ImageDelete($uploads = [])
     {
         foreach ($uploads as $oldLink) {
-            $image = 'storage/' . $oldLink;
-            file_exists($image) ? unlink($image) : '';
+            $ch = curl_init('https://res.cloudinary.com/opasceptre/image/upload/v1600627348/'.$oldLink);
+            curl_exec($ch);
+            curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200 ? Cloudinary\Uploader::destroy($oldLink) : '';
         }
     }
 }
