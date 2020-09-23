@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Wishlist::class);
+    }
 }

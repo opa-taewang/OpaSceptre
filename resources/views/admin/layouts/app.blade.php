@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/tagsinput.css')}}">
+    @toastr_css
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -72,6 +73,10 @@
 
 </script>
 <script src="{{asset('admin/custom.js')}}"></script>
+
 @include('sweetalert::alert')
+@toastr_js
+
+@toastr_render
 </body>
 </html>

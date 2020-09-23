@@ -87,7 +87,7 @@ class HomeController extends Controller
                         ->orderByRaw('RAND()')
                         ->limit(3)
                         ->get();
-        return view('home', compact('main_slider', 'mid_slider', 'best_rated','hot_deal', 'hot_new', 'trend', 'mid_slider_animation'));
+        return view('user.home', compact('main_slider', 'mid_slider', 'best_rated','hot_deal', 'hot_new', 'trend', 'mid_slider_animation'));
     }
 
 }

@@ -12,17 +12,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
 // Home Routes
 Route::get('/', 'HomeController@index');
-Route::get('/index', 'HomeController@index')->name( 'index');
+Route::get('/index', 'HomeController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/new', function() {
+Route::get('/new', function () {
     return view('new');
 });
+// User Route
+Route::get('/', 'HomeController@index')->name('home');
+
+// Cart
+Route::get('/cart', function () {
+    return view('user.cart');
+});
+// Route::get('/', 'CartController@index')->name('home');
 
 Route::get('/product-quick-view/{product}', 'FrontendController@quickview')->name('quickview');
-Auth::routes();
+// Wishlist
+Route::post('/wishlist/{product}', 'WishlistController@toggle')->name('wishlisttoggle');
+Route::get('/wishlist/get/{product}', 'WishlistController@toggle');
 
 // Frontend Settings
 Route::post('/newsletter', 'FrontendController@newsletterStore')->name('newsletter.store');

@@ -24,9 +24,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('custom/style.min.css')}}">
+    @toastr_css
 </head>
-<body id="app">
-    <div class="page-wrapper">
+<body>
+    <div class="page-wrapper" id="app">
        {{-- header --}}
        @include('layouts.header')
 
@@ -65,6 +66,9 @@
             s.parentNode.insertBefore(wf, s);
         })(document);
     </script>
+    @toastr_js
+
+    @toastr_render
     @include('sweetalert::alert')
 </body>
 </html>

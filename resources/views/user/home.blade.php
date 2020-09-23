@@ -81,9 +81,10 @@
                             <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_one}}" alt="product" width="300" height="300"/>
                             <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_two}}" alt="product" width="300" height="300"/>
                         </a>
-                        <div class="btn-icon-group">
+                        <add-to-cart v-b-tooltip.hover title="Add to cart" trending-id="{{$trending->id}}"></add-to-cart>
+                        {{-- <div class="btn-icon-group">
                             <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="fas fa-shopping-bag"></i></button>
-                        </div>
+                        </div> --}}
                         <a href="{{route('quickview', $trending->id)}}" class="btn-quickview" title="Quick View">Quick View</a>
                     </figure>
                     <div class="product-details">
@@ -93,7 +94,13 @@
                                 <a href="category.html" class="product-category">{{$trending->category_name}}</a>,
                                 <a href="subcategory.html" class="product-category">{{$trending->subcategory_name}}</a>
                             </div>
-                            <a href="#" class="btn-icon-wish"><i class="far fa-heart"></i></a>
+                            @php
+                                if (Auth::check()) {
+                                    $wishlistStatus = \App\Wishlist::where('product_id', $trending->id)->where('user_id', Auth::id())->first() ? 1 : 0;
+                                }
+                            @endphp
+                            <add-to-wishlist class="mr-auto" v-b-tooltip.hover title="Add to wishlist" product-id="{{$trending->id}}" @if(Auth::check()) status="{{$wishlistStatus}}" @endif></add-to-wishlist>
+                            {{-- <a href="#" class="btn-icon-wish"><i class="far fa-heart"></i></a> --}}
                         </div>
                         <h3 class="product-title">
                             <a href="product.html">{{$trending->product_name}}</a>
@@ -277,16 +284,16 @@
         <h3 class="subtitle text-uppercase">Follow On Instagram</h3>
         <div class="heading-spacer"></div>
         <div class="owl-carousel instagram-feed-carousel instagram-feed-list">
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/" width="197" height="150" alt="Feed"></a>
-            <a href="#"><img src="https://res.cloudinary.com/opasceptre/image/upload/g" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#" width="197" height="150" alt="Feed"></a>
+            <a href="#"><img src="#g" width="197" height="150" alt="Feed"></a>
         </div><!-- End .instagram-feed-carousel -->
     </div><!-- End .instagram-section -->
 </main><!-- End .main -->

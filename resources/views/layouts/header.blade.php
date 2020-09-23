@@ -20,11 +20,11 @@
                             </div><!-- End .header-menu -->
                         </div>
                         <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
-                            <a href="#"><img src="/storage/images/flags/en.png" width="16" height="11" alt="flag" />ENG</a>
+                            <a href="#"><img src="/images/flags/en.png" width="16" height="11" alt="flag" />ENG</a>
                             <div class="header-menu">
                                 <ul>
-                                    <li><a href="#"><img src="/storage/images/flags/en.png" width="16" height="11" alt="flag" />ENG</a></li>
-                                    <li><a href="#"><img src="/storage/images/flags/fr.png" width="16" height="11" alt="flag" />FRA</a></li>
+                                    <li><a href="#"><img src="/images/flags/en.png" width="16" height="11" alt="flag" />ENG</a></li>
+                                    <li><a href="#"><img src="/images/flags/fr.png" width="16" height="11" alt="flag" />FRA</a></li>
                                 </ul>
                             </div><!-- End .header-menu -->
                         </div>
@@ -66,7 +66,7 @@
                         </ul>
                         <span class="separator d-none d-xl-block"></span>
                         <div class="share-links d-none d-xl-block">
-                            <a target="_blank" rel="nofollow" class="share-facebook icon-facebook" href="#" title="Facebook"><i class="fas fa-facebook-f"></i></a>
+                            <a target="_blank" rel="nofollow" class="share-facebook icon-facebook" href="#" title="Facebook"></a>
                             <a target="_blank" rel="nofollow" class="share-twitter icon-twitter" href="#" title="Twitter"></a>
                             <a target="_blank" rel="nofollow" class="share-instagram icon-instagram" href="#" title="Instagram"></a>
                         </div>
@@ -89,7 +89,7 @@
 
                     <div class="header-center">
                         <a href="index-2.html" class="logo">
-                            <img src="/storage/images/logo_red.png" alt="Porto Logo" width="104" height="41" />
+                            <img src="/images/logo_red.png" alt="Porto Logo" width="104" height="41" />
                         </a>
                     </div><!-- End .headeer-center -->
 
@@ -198,7 +198,7 @@
                             <ul class="menu sf-arrows">
                                 <li class="active"><a href="index-2.html">Home</a></li>
                                 <li>
-                                    <a href="#">Categories &nbsp;<i class="fas fa-angle-down"></i></a>
+                                    <a href="#">Categories </a>
                                     <div class="megamenu megamenu-fixed-width">
                                         <div class="row">
                                             <div class="col-lg-8" id="categoryaccordion">

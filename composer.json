@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.4.0",
         "ext-gd": "*",
+        "bumbummen99/shoppingcart": "^2.10",
+        "cloudinary/cloudinary_php": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0",
@@ -20,7 +22,7 @@
         "laravel/ui": "^3.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "realrashid/sweet-alert": "^3.1",
-        "cloudinary/cloudinary_php": "dev-master"
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
