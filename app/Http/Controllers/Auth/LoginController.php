@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
@@ -35,14 +36,26 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    // Events on login
+    public function authenticated()
     {
         if (Auth::check() && Auth::user()->role->id == 1) {
             $this->redirectTo = route('admin.dashboard');
         } else {
             $this->redirectTo = RouteServiceProvider::HOME;
         }
+        // Move visitor's cart to user
+        $update = DB::table('carts')
+            ->where('identifier', $_COOKIE[strtolower(env('APP_NAME').'_cart')])
+            ->update([
+                'user_id' => Auth::id(),
+                'identifier' => NULL
+                ]);
+        \App\MyCookie::visitorIdDelete();
+    }
 
+    public function __construct()
+    {
         $this->middleware('guest')->except('logout');
     }
 }

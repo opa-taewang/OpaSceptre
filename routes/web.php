@@ -26,6 +26,9 @@ Route::get('/new', function () {
 Route::get('/', 'HomeController@index')->name('home');
 
 // Cart
+Route::post('/cart/{product}', 'CartController@addcart')->name('addtocart');
+Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocart');
+Route::get('/cart/check', 'CartController@check')->name('checkcart');
 Route::get('/cart', function () {
     return view('user.cart');
 });

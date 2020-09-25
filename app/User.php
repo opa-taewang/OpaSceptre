@@ -2,13 +2,32 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    // Event to Create profile table on setup
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            // Move visitor's cart to user
+            $update = DB::table('carts')
+                // ->where('identifier', $_COOKIE[strtolower(env('APP_NAME') . '_cart')])
+                ->update([
+                    'user_id' => Auth::id(),
+                    'identifier' => NULL
+                ]);
+            \App\MyCookie::visitorIdDelete();
+        });
+    }
 
     /**
      * The attributes that are mass assignable.

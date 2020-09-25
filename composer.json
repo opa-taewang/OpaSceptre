@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.4.0",
         "ext-gd": "*",
-        "bumbummen99/shoppingcart": "^2.10",
         "cloudinary/cloudinary_php": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",

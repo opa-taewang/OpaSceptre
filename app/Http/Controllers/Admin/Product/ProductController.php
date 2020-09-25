@@ -177,7 +177,9 @@ class ProductController extends Controller
         $category = $product->category->category_name;
         $subcategory = $product->subcategory->subcategory_name;
         $brand = $product->brand->brand_name;
-        return view('admin.product.view', compact('product', 'category', 'subcategory', 'brand'));
+        $colour = explode(',', $product->product_colour);
+        $size = explode(',', $product->product_size);
+        return view('admin.product.view', compact('product', 'category', 'subcategory', 'brand', 'size', 'colour'));
     }
     // Delete indiviodual products
     public function delete(Product $product)

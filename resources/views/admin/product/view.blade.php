@@ -82,12 +82,22 @@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label for="product_size" class="font-weight-light">Product Size:</label>
-                            <p class="font-weight-bolder">{{$subcategory}}</p>
+                            <div class="btn-group" role="group" aria-label="size">
+                                @foreach ($size as $size)
+                                    <button type="button" class="btn btn-secondary">{{$size}}</button>
+                                @endforeach
+                            </div>
+
                         </div>
                         {{-- Product Colour --}}
                         <div class="form-group col-md-3">
                             <label for="product_colour" class="font-weight-light">Product Colour:</label>
-                            <p class="font-weight-bolder">{{$subcategory}}</p>
+                            <br>
+                            {{-- <div class="btn-group" role="group" aria-label="colour"> --}}
+                                @foreach ($colour as $colour)
+                                    <button type="button" class="btn btn-secondary" style="background-color: {{$colour}}">&nbsp;&nbsp;</button>
+                                @endforeach
+                            {{-- </div> --}}
                         </div>
                         {{-- Producty quantity --}}
                         <div class="form-group col-md-3">

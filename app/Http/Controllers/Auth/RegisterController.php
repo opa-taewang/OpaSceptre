@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,15 +38,9 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
-
-        if (Auth::check() && Auth::user()->role->id == 1) {
-            $this->redirectTo = route('admin.dashboard');
-        } else {
-            $this->redirectTo = RouteServiceProvider::HOME;
-        }
-
         $this->middleware('guest');
     }
 
