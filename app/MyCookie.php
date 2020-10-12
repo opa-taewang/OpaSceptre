@@ -28,7 +28,10 @@ class MyCookie extends Model
 
     public static function get($name)
     {
-        return $_COOKIE[$name];
+        if(self::exists($name))
+        {
+            return $_COOKIE[$name];
+        }
     }
 
     public static function visitorIdDelete()

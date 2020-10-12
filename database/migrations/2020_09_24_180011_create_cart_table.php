@@ -17,11 +17,16 @@ class CreateCartTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('identifier')->nullable()->index();
-            $table->json('content');
+            $table->bigInteger('product_id');
+            $table->string('product_name');
+            $table->bigInteger('product_quantity');
+            $table->float('product_price', 15, 2);
+            $table->string('product_size');
+            $table->string('product_colour');
+            $table->string('product_image');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

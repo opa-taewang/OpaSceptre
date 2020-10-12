@@ -24,65 +24,38 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="product-row">
-										<td class="product-col">
-											<figure class="product-image-container">
-												<a href="product.html" class="product-image">
-													<img src="assets/images/products/product-4.jpg" alt="product">
-												</a>
-											</figure>
-											<h2 class="product-title">
-												<a href="product.html">Men Watch</a>
-											</h2>
-										</td>
-										<td>$17.90</td>
-										<td>
-											<input class="vertical-quantity form-control" type="text">
-										</td>
-										<td>$17.90</td>
-									</tr>
-									<tr class="product-action-row">
-										<td colspan="4" class="clearfix">
-											<div class="float-left">
-												<a href="#" class="btn-move">Move to Wishlist</a>
-											</div><!-- End .float-left -->
+                                    @foreach ($cart as $cart)
+                                        <tr class="product-row">
+                                            <td class="product-col">
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$cart->product_image}}" alt="{{$cart->product_name}}" height="100" width="100">
+                                                    </a>
+                                                </figure>
+                                                <h2 class="product-title">
+                                                    <a href="product.html">{{$cart->product_name}}</a>
+                                                </h2>
+                                            </td>
+                                            <td>{{$cart->product_price / $cart->product_quantity}}</td>
+                                            <td>
+                                                <update-cart product-id="{{$cart->product_id}}" @if(Auth::check()) status="" @endif current-value="{{$cart->product_quantity}}"></update-cart>
+                                                {{-- <input class="vertical-quantity form-control" type="text"> --}}
+                                            </td>
+                                            <td>{{$cart->product_price}}</td>
+									    </tr>
+                                        <tr class="product-action-row">
+                                            <td colspan="4" class="clearfix">
+                                                <div class="float-left">
+                                                    <a href="#" class="btn-move">Move to Wishlist</a>
+                                                </div><!-- End .float-left -->
 
-											<div class="float-right">
-												<a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Edit</span><i class="icon-pencil"></i></a>
-												<a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Remove</span></a>
-											</div><!-- End .float-right -->
-										</td>
-									</tr>
-
-									<tr class="product-row">
-										<td class="product-col">
-											<figure class="product-image-container">
-												<a href="product.html" class="product-image">
-													<img src="assets/images/products/product-3.jpg" alt="product">
-												</a>
-											</figure>
-											<h2 class="product-title">
-												<a href="product.html">Computer Mouse</a>
-											</h2>
-										</td>
-										<td>$8.90</td>
-										<td>
-											<input class="vertical-quantity form-control" type="text">
-										</td>
-										<td>$8.90</td>
-									</tr>
-									<tr class="product-action-row">
-										<td colspan="4" class="clearfix">
-											<div class="float-left">
-												<a href="#" class="btn-move">Move to Wishlist</a>
-											</div><!-- End .float-left -->
-
-											<div class="float-right">
-												<a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Edit</span><i class="icon-pencil"></i></a>
-												<a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Remove</span></a>
-											</div><!-- End .float-right -->
-										</td>
-									</tr>
+                                                <div class="float-right">
+                                                    <a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Edit</span><i class="icon-pencil"></i></a>
+                                                    <a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Remove</span></a>
+                                                </div><!-- End .float-right -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
 								</tbody>
 
 								<tfoot>
@@ -130,9 +103,6 @@
 										<div class="select-custom">
 											<select class="form-control form-control-sm">
 												<option value="USA">United States</option>
-												<option value="Turkey">Turkey</option>
-												<option value="China">China</option>
-												<option value="Germany">Germany</option>
 											</select>
 										</div><!-- End .select-custom -->
 									</div><!-- End .form-group -->
@@ -142,7 +112,6 @@
 										<div class="select-custom">
 											<select class="form-control form-control-sm">
 												<option value="CA">California</option>
-												<option value="TX">Texas</option>
 											</select>
 										</div><!-- End .select-custom -->
 									</div><!-- End .form-group -->
@@ -174,7 +143,7 @@
 								<tbody>
 									<tr>
 										<td>Subtotal</td>
-										<td>$17.90</td>
+										<td>{{$total->total_price}}</td>
 									</tr>
 
 									<tr>

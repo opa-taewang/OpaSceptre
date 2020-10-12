@@ -77,14 +77,17 @@
                 <div class="col-6 col-sm-4 col-md-3 appear-animate" data-animation-delay="100" data-animation-duration="1500">
                 <div class="product-default inner-quickview inner-icon">
                     <figure>
-                        <a href="product.html">
+                        <a href="{{route('singleProduct', $trending->id)}}">
                             <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_one}}" alt="product" width="300" height="300"/>
                             <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$trending->image_two}}" alt="product" width="300" height="300"/>
                         </a>
-                        <add-to-cart v-b-tooltip.hover title="Add to cart" trending-id="{{$trending->id}}"></add-to-cart>
-                        {{-- <div class="btn-icon-group">
-                            <button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="fas fa-shopping-bag"></i></button>
-                        </div> --}}
+                        @php
+                            if (Auth::check()) {
+                                $wishlistStatus = \App\Wishlist::where('product_id', $trending->id)->where('user_id', Auth::id())->first() ? 1 : 0;
+                            }
+                        @endphp
+                        <add-to-cart-one v-b-tooltip.hover title="Add to cart" product-id="{{$trending->id}}" @if(Auth::check()) status="{{$wishlistStatus}}" @endif></add-to-cart-one>
+
                         <a href="{{route('quickview', $trending->id)}}" class="btn-quickview" title="Quick View">Quick View</a>
                     </figure>
                     <div class="product-details">

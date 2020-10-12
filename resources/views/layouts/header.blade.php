@@ -36,7 +36,7 @@
                             <li class="menu-item narrow"><a href="about.html">About Us</a></li>
                             <li class="menu-item narrow"><a href="blog.html">Blog</a></li>
                             <li class="menu-item narrow"><a href="#">My Wishlist</a></li>
-                            <li class="menu-item narrow"><a href="cart.html">Cart</a></li>
+                            <li class="menu-item narrow"><a href="{{route('cart.show')}}">Cart</a></li>
                             <li class="menu-item">
                                 @auth
                                     <a href="/account">My Account</a>
@@ -120,6 +120,11 @@
                             </form>
                         </div>
                         <div class="dropdown cart-dropdown">
+                            @php
+                                $carts = \App\Cart::get(2);
+                                // dd($carts);
+                                $total = \App\Cart::total();
+                            @endphp
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="fas fa-shopping-bag"></i>
                                 <span class="cart-count badge-circle">2</span>
@@ -127,57 +132,39 @@
                             <div class="dropdown-menu">
                                 <div class="dropdownmenu-wrapper">
                                     <div class="dropdown-cart-header">
-                                        <span>2 Items</span>
+                                        <span>{{$total->cart_quantity}} Items</span>
 
                                         <a href="cart.html" class="float-right">View Cart</a>
                                     </div><!-- End .dropdown-cart-header -->
 
                                     <div class="dropdown-cart-products">
-                                        <div class="product">
+                                        @foreach ($carts as $cart)
+                                            <div class="product">
                                             <div class="product-details">
                                                 <h4 class="product-title">
-                                                    <a href="product.html">Woman Ring</a>
+                                                    <a href="product.html">{{$cart->product_name}}</a>
                                                 </h4>
 
                                                 <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $99.00
+                                                    <span class="cart-product-qty">{{$cart->product_quantity}}</span>
+                                                    x {{$cart->product_price/$cart->product_quantity}}
                                                 </span>
                                             </div><!-- End .product-details -->
 
                                             <figure class="product-image-container">
                                                 <a href="product.html" class="product-image">
-                                                    <img src="/storage/images/products/cart/product-1.jpg" alt="product" width="80" height="80" />
+                                                    <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$cart->product_image}}" alt="product" width="80" height="80" />
                                                 </a>
-                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                                                <a href="#" id="cartremove" class="btn-remove icon-cancel" title="Remove Product"></a>
                                             </figure>
-                                        </div><!-- End .product -->
-
-                                        <div class="product">
-                                            <div class="product-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Woman Necklace</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $35.00
-                                                </span>
-                                            </div><!-- End .product-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="/storage/images/products/cart/product-2.jpg" alt="product" width="80" height="80" />
-                                                </a>
-                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                            </figure>
-                                        </div><!-- End .product -->
+                                            </div><!-- End .product -->
+                                        @endforeach
                                     </div><!-- End .cart-product -->
 
                                     <div class="dropdown-cart-total">
                                         <span>Subtotal:</span>
 
-                                        <span class="cart-total-price float-right">$134.00</span>
+                                        <span class="cart-total-price float-right">${{$total->total_price}}</span>
                                     </div><!-- End .dropdown-cart-total -->
 
                                     <div class="dropdown-cart-action">

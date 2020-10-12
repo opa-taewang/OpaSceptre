@@ -27,14 +27,23 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // Cart
 Route::post('/cart/{product}', 'CartController@addcart')->name('addtocart');
-Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocart');
+Route::post('/cart/check/{product}', 'CartController@CartAdd');
+Route::get('/cart/check1/{product}', 'CartController@CartAdd');
+Route::post('/cart/update/{product}', 'CartController@CartUpdate');
+Route::get('/cartq/update/{product}', 'CartController@CartUpdate');
+Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocartfast');
 Route::get('/cart/check', 'CartController@check')->name('checkcart');
-Route::get('/cart', function () {
-    return view('user.cart');
+Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');
+Route::get('/cart/total', function () {
+    return \App\Cart::total();
 });
+Route::get('/cart', 'CartController@show')->name('cart.show');
 // Route::get('/', 'CartController@index')->name('home');
 
-Route::get('/product-quick-view/{product}', 'FrontendController@quickview')->name('quickview');
+// Products Front
+Route::get('/product-quick-view/{product}', 'ProductController@quickview')->name('quickview');
+Route::get('/product/{product}', 'ProductController@singleProduct')->name('singleProduct');
+Route::get('/product-colour-size/{product}', 'ProductController@productColourSize')->name('productColourSize.get');
 // Wishlist
 Route::post('/wishlist/{product}', 'WishlistController@toggle')->name('wishlisttoggle');
 Route::get('/wishlist/get/{product}', 'WishlistController@toggle');
