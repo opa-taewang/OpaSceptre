@@ -70,5 +70,27 @@
 
     @toastr_render
     @include('sweetalert::alert')
+
+    {{-- <script>
+        $(document).ready(function() {
+
+            // For select
+            $('.selectQuantity').change(function (e) {
+                e.preventDefault();
+
+                var productId = $(this).attr("id");
+                    $.ajax({
+                        url: '/cartq/update/'+productId,
+                        method: "get",
+                        data: $('#quantityForm' + productId).serialize(),
+                        success: function(data) {
+                            data.type == 'success' ? toastr.success(data.message) : toastr.warning(data.message);
+                            location.reload();
+                        }
+                    })
+            });
+
+    });
+    </script> --}}
 </body>
 </html>

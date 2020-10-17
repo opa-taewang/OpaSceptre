@@ -2563,14 +2563,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['productId', 'status', 'currentValue'],
-  mounted: function mounted() {
-    console.log(this.currentValue);
+  mounted: function mounted() {// console.log(this.currentValue)
   },
   data: function data() {
     return {
       statusChange: this.status,
       quantities: [],
-      product_quantity: ''
+      product_quantity: this.currentValue
     };
   },
   components: {},
@@ -55602,6 +55601,7 @@ var render = function() {
         _vm._l(_vm.quantities, function(quantity) {
           return _c("option", {
             key: quantity,
+            attrs: { btnStyles: "" },
             domProps: {
               value: quantity,
               selected: quantity == "1",

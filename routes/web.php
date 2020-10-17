@@ -30,7 +30,7 @@ Route::post('/cart/{product}', 'CartController@addcart')->name('addtocart');
 Route::post('/cart/check/{product}', 'CartController@CartAdd');
 Route::get('/cart/check1/{product}', 'CartController@CartAdd');
 Route::post('/cart/update/{product}', 'CartController@CartUpdate');
-Route::get('/cartq/update/{product}', 'CartController@CartUpdate');
+// Route::get('/cartq/update/{product}', 'CartController@CartUpdate');
 Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocartfast');
 Route::get('/cart/check', 'CartController@check')->name('checkcart');
 Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');

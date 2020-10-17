@@ -39,6 +39,17 @@
                                             <td>{{$cart->product_price / $cart->product_quantity}}</td>
                                             <td>
                                                 <update-cart product-id="{{$cart->product_id}}" @if(Auth::check()) status="" @endif current-value="{{$cart->product_quantity}}"></update-cart>
+                                                {{-- @php
+                                                    $quantities = \App\Product::productColourSize($cart->product_id);
+                                                @endphp
+                                                <form action="/cart.php" method="POST" id="quantityForm{{$cart->product_id}}">
+                                                    @csrf
+                                                    <select class="custom-select selectQuantity mt-5" name="product_quantity" id="{{$cart->product_id}}">
+                                                        @foreach ($quantities as $quantity)
+                                                            <option value="{{$quantity}}" @if($quantity == $cart->product_quantity) {{'selected'}} @endif>{{$quantity}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </form> --}}
                                                 {{-- <input class="vertical-quantity form-control" type="text"> --}}
                                             </td>
                                             <td>{{$cart->product_price}}</td>
