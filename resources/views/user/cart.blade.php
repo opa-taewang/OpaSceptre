@@ -57,12 +57,16 @@
                                         <tr class="product-action-row">
                                             <td colspan="4" class="clearfix">
                                                 <div class="float-left">
-                                                    <a href="#" class="btn-move">Move to Wishlist</a>
+                                                    <a href="{{route('cart.moveToWishlist', $cart->product_id)}}" class="btn-move">Move to Wishlist</a>
                                                 </div><!-- End .float-left -->
 
                                                 <div class="float-right">
-                                                    <a href="#" title="Edit product" class="btn-edit"><span class="sr-only">Edit</span><i class="icon-pencil"></i></a>
-                                                    <a href="#" title="Remove product" class="btn-remove"><span class="sr-only">Remove</span></a>
+                                                    <form method="post" action="{{route('cart.remove', $cart->product_id)}}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-sm" type="submit" onclick="return confirm('Are you sure you want to Remove?');" style="background-color:transparent"><span class="sr-only">Remove</span><i class="far fa-trash-alt"></i></button>
+                                                        <a title="Remove product" class="btn-remove"></a>
+                                                    </form>
                                                 </div><!-- End .float-right -->
                                             </td>
                                         </tr>
@@ -78,7 +82,7 @@
 
 											<div class="float-right">
 												<a href="#" class="btn btn-outline-secondary btn-clear-cart">Clear Shopping Cart</a>
-												<a href="#" class="btn btn-outline-secondary btn-update-cart">Update Shopping Cart</a>
+												{{-- <a href="#" class="btn btn-outline-secondary btn-update-cart">Update Shopping Cart</a> --}}
 											</div><!-- End .float-right -->
 										</td>
 									</tr>
@@ -87,12 +91,18 @@
 						</div><!-- End .cart-table-container -->
 
 						<div class="cart-discount">
-							<h4>Apply Discount Code</h4>
-							<form action="#">
+							<h4>Apply Coupon Code</h4>
+                            <form method="POST" action="{{route('coupon.add')}}">
+                                @csrf
 								<div class="input-group">
-									<input type="text" class="form-control form-control-sm" placeholder="Enter discount code"  required>
+                                    <input type="text" id="coupon" class="form-control form-control-sm @error('coupon_code') is-invalid @enderror" placeholder="Enter coupon code" name="coupon_code" >
+                                    @error('coupon_code')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
 									<div class="input-group-append">
-										<button class="btn btn-sm btn-primary" type="submit">Apply Discount</button>
+										<button class="btn btn-sm btn-primary" type="submit">Apply Coupon</button>
 									</div>
 								</div><!-- End .input-group -->
 							</form>
@@ -154,8 +164,28 @@
 								<tbody>
 									<tr>
 										<td>Subtotal</td>
-										<td>{{$total->total_price}}</td>
+										<td>&#8358;{{number_format($total->total_price,2)}}</td>
 									</tr>
+
+                                    <tr>
+										<td>Coupon</td>
+										<td>
+                                            @if (Session::has(env('APP_NAME') . '_coupon'))
+                                                @php
+                                                    $discount_price = (Session::get(env('APP_NAME') . '_coupon')['discount'] * $total->total_price)/100
+												@endphp
+                                                <span class="badge bg-success">
+                                                    {{Session::get(env('APP_NAME') . '_coupon')['name']}}
+                                                    {{Session::get(env('APP_NAME') . '_coupon')['discount']}}%
+                                                    <a href="{{route('coupon.remove')}}" onclick="return confirm('Remove {{Session::get(env('APP_NAME') . '_coupon')['name']}}?');"><i class="fas fa-minus-circle"></i></a>
+												</span>
+												{{-- Discount price --}}
+                                                -&#8358;{{number_format($discount_price,2)}}
+                                            @else
+                                                <a href="#coupon">Add coupon</a>
+                                            @endif
+                                        </td>
+                                    </tr>
 
 									<tr>
 										<td>Tax</td>
@@ -165,7 +195,18 @@
 								<tfoot>
 									<tr>
 										<td>Order Total</td>
-										<td>$17.90</td>
+										<td>
+											@if (Session::has(env('APP_NAME') . '_coupon'))
+												@php
+													$order_total = $total->total_price - $discount_price;
+												@endphp
+											@else
+												@php
+													$order_total = $total->total_price;
+												@endphp
+											@endif
+											&#8358;{{number_format($order_total, 2)}}
+										</td>
 									</tr>
 								</tfoot>
 							</table>

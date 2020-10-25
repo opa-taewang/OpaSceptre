@@ -33,20 +33,26 @@ Route::post('/cart/update/{product}', 'CartController@CartUpdate');
 // Route::get('/cartq/update/{product}', 'CartController@CartUpdate');
 Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocartfast');
 Route::get('/cart/check', 'CartController@check')->name('checkcart');
-Route::delete('/cart/remove', 'CartController@remove')->name('cart.remove');
+Route::delete('/cart/{product}/remove', 'CartController@removeFromCart')->name('cart.remove');
 Route::get('/cart/total', function () {
     return \App\Cart::total();
 });
 Route::get('/cart', 'CartController@show')->name('cart.show');
 // Route::get('/', 'CartController@index')->name('home');
+// coupon
+Route::post('/coupon/', 'CartController@couponAdd')->name('coupon.add');
+Route::get('/coupon/', 'CartController@couponRemove')->name('coupon.remove');
 
 // Products Front
 Route::get('/product-quick-view/{product}', 'ProductController@quickview')->name('quickview');
 Route::get('/product/{product}', 'ProductController@singleProduct')->name('singleProduct');
 Route::get('/product-colour-size/{product}', 'ProductController@productColourSize')->name('productColourSize.get');
+Route::get('/category/{category}/subcategory/{subcategory}', 'ProductController@categoryGet')->name('category.get');
+
 // Wishlist
 Route::post('/wishlist/{product}', 'WishlistController@toggle')->name('wishlisttoggle');
 Route::get('/wishlist/get/{product}', 'WishlistController@toggle');
+Route::get('/cart/{product}/move', 'WishlistController@moveCartToWishlist')->name('cart.moveToWishlist');
 
 // Frontend Settings
 Route::post('/newsletter', 'FrontendController@newsletterStore')->name('newsletter.store');

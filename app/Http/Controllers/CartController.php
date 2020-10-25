@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use DB;
 use App\Cart;
 use App\Product;
-use Illuminate\Http\Request;
+use App\Wishlist;
 
+use App\Model\Admin\Coupon;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -80,4 +83,39 @@ class CartController extends Controller
         $cart = Cart::updateCart($data, $product->id);
         return $cart;
     }
+
+    public function removeFromCart(Product $product){
+        Cart::remove($product->id) ? toastr('Removed from Cart successfully', 'success') : '';
+        return redirect()->route('cart.show');
+    }
+
+    public function couponAdd(Request $request)
+    {
+        $request->validate([
+            'coupon_code' => ['required', 'alpha_num']
+        ]);
+        $coupon = Coupon::where('coupon', $request->input('coupon_code'))->first();
+        $coupon_name = env('APP_NAME') . '_coupon';
+        // dd($coupon_name);
+        if($coupon){
+            Session::put($coupon_name, [
+                'name' => $coupon->coupon,
+                'discount' => $coupon->discount
+            ]);
+            toastr('Coupon applied successfully', 'success');
+        }else{
+            toastr('Invalid Coupon', 'danger');
+        }
+        return redirect()->back();
+        // dd($coupon);
+    }
+
+    public function couponRemove(Coupon $coupon)
+    {
+        $coupon_name = env('APP_NAME') . '_coupon';
+        Session::forget($coupon_name);
+        toastr('Coupon removed successfully', 'success');
+        return redirect()->back();
+    }
+
 }

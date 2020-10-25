@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Http\Request;
+use App\Model\Admin\Category;
+use App\Model\Admin\SubCategory;
 
 class ProductController extends Controller
 {
@@ -58,5 +60,26 @@ class ProductController extends Controller
             'quantity' => $product->product_quantity
         ];
         return response()->json($data);
+    }
+
+    public function categoryGet(Category $category, $subCategory)
+    {
+        $subCategory = SubCategory::findOrFail($subCategory);
+        if($subCategory->category_id != $category->id){
+            abort(404);
+        }
+        $subCategories = $category->subcategories;
+        $products = Product::where('status', 1)
+                    ->where('products.category_id', $category->id)
+                    ->where('products.subcategory_id', $subCategory->id)
+                    ->join('categories', 'categories.id', '=', 'products.category_id')
+                    ->join('subcategories', 'subcategories.id', '=', 'products.subcategory_id')
+                    ->join('brands', 'brands.id', '=', 'products.brand_id')
+                    ->select('products.*', 'categories.category_name', 'subcategories.subcategory_name', 'brands.brand_name')
+                    ->orderByDesc('products.created_at')
+                    ->get();
+
+        // dd($products, $subCategories);
+        return view('user.category', compact('products', 'subCategories', 'category'));
     }
 }

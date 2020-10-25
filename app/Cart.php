@@ -19,24 +19,6 @@ class Cart extends Model
         'user_id', 'identifier','product_id','product_name','product_quantity','product_price','product_size','product_colour','product_image'
     ];
 
-    protected static function remove()
-    {
-        //
-    }
-
-    protected static function get($lmt = NULL)
-    {
-        // $limi = 2;
-        $cookie = strtolower(env('APP_NAME') . '_cart');
-        $identifier = Auth::check() ? ['user_id' => Auth::id()] : ['identifier' => MyCookie::get($cookie)];
-        $cart = self::select('product_id', 'product_name', 'product_quantity', 'product_price', 'product_size', 'product_colour', 'product_image')
-        ->where($identifier)
-            ->orderByDesc('created_at')
-            ->limit($lmt)
-            ->get();
-        return $cart;
-    }
-
     protected static function checkIfExists($product_id)
     {
         $cookie = strtolower(env('APP_NAME') . '_cart');
@@ -66,6 +48,30 @@ class Cart extends Model
         return $notification;
     }
 
+    // Delete from cart
+    protected static function remove(string $product_id)
+    {
+        $cookie = strtolower(env('APP_NAME') . '_cart');
+        $identifier = Auth::check() ? ['user_id' => Auth::id()] : ['identifier' => MyCookie::get($cookie)];
+        $cart = self::select()
+        ->where('product_id', $product_id)
+        ->where($identifier)->delete();
+        return $cart ?  true : false;
+    }
+
+    protected static function get($lmt = NULL)
+    {
+        // $limi = 2;
+        $cookie = strtolower(env('APP_NAME') . '_cart');
+        $identifier = Auth::check() ? ['user_id' => Auth::id()] : ['identifier' => MyCookie::get($cookie)];
+        $cart = self::select('product_id', 'product_name', 'product_quantity', 'product_price', 'product_size', 'product_colour', 'product_image')
+        ->where($identifier)
+            ->orderByDesc('created_at')
+            ->limit($lmt)
+            ->get();
+        return $cart;
+    }
+
     protected static function total()
     {
         if(Auth::check())
@@ -83,6 +89,7 @@ class Cart extends Model
         }
     }
 
+    // Update Cart
     protected static function updateCart(array $data,string $product_id)
     {
         $notification = [];
@@ -104,4 +111,5 @@ class Cart extends Model
         }
         return $notification;
     }
+
 }

@@ -70,3 +70,5 @@ $(".cartquantity").inputSpinner({
         '<div class="input-group-append"><button style="min-width: ${buttonsWidth}" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button></div>' +
         '</div>'
 });
+
+

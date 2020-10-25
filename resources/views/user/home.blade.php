@@ -158,7 +158,7 @@
                 @foreach ($best_rated as $bestrated)
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
-                            <a href="product.html">
+                            <a href="{{route('singleProduct', $bestrated->id)}}">
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$bestrated->image_one}}" width="175" height="175" alt="product" />
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$bestrated->image_two}}" width="175" height="175" alt="product" />
                             </a>
@@ -198,7 +198,7 @@
                 @foreach ($hot_deal as $hotdeal)
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
-                            <a href="product.html">
+                            <a href="{{route('singleProduct', $hotdeal->id)}}">
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotdeal->image_one}}" width="175" height="175" alt="product" />
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotdeal->image_two}}" width="175" height="175" alt="product" />
                             </a>
@@ -236,7 +236,7 @@
                     @foreach ($hot_new as $hotnew)
                     <div class="product-default left-details product-widget mb-2">
                         <figure>
-                            <a href="product.html">
+                            <a href="{{route('singleProduct', $hotnew->id)}}">
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotnew->image_one}}" width="175" height="175" alt="product" />
                                 <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$hotnew->image_two}}" width="175" height="175" alt="product" />
                             </a>
