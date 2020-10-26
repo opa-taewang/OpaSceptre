@@ -42,7 +42,8 @@ Route::get('/cart', 'CartController@show')->name('cart.show');
 // coupon
 Route::post('/coupon/', 'CartController@couponAdd')->name('coupon.add');
 Route::get('/coupon/', 'CartController@couponRemove')->name('coupon.remove');
-
+// Checkout page
+Route::get('/checkout/', 'CartController@checkout')->name('checkout');
 // Products Front
 Route::get('/product-quick-view/{product}', 'ProductController@quickview')->name('quickview');
 Route::get('/product/{product}', 'ProductController@singleProduct')->name('singleProduct');
