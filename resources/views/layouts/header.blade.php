@@ -183,7 +183,7 @@
                     <nav class="main-nav d-none d-lg-flex">
                         <div class="header-left">
                             <ul class="menu sf-arrows">
-                                <li class="active"><a href="index-2.html">Home</a></li>
+                                <li class="active"><a href="/">Home</a></li>
                                 <li>
                                     <a href="#">Categories </a>
                                     <div class="megamenu megamenu-fixed-width">
@@ -202,7 +202,9 @@
                                                                 <hr class="mt-0 mb-1">
                                                                     <div class="mt-0 font-weight-lighter">
                                                                         @foreach ($subcategory as $subcategory)
-                                                                            <p class="ml-2">{{$subcategory->subcategory_name}}</p>
+                                                                            <a href="{{route('category.get', ['category'=> $category->id, 'subcategory' => $subcategory->id])}}">
+                                                                                <p class="ml-2">{{$subcategory->subcategory_name}}</p>
+                                                                            </a>
                                                                         @endforeach
                                                                     </div>
                                                             </div>
@@ -227,17 +229,17 @@
                                     <a href="blog.html">Blog</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">About us</a>
+                                    <a href="about.html">Shop</a>
                                 </li>
                                 <li>
-                                    <a href="#">Elements</a>
+                                    <a href="#">Contact us</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="header-right">
                             <div class="menu-custom-block">
-                                <a href="#">Special Offer!</a>
-                                <a href="https://1.envato.market/DdLk5" target="_blank">Buy Porto!<em class="tip hot">HOT</em></a>
+                                <a href="about.html">About us</a>
+                                <a href="#">Contact us</a>
                             </div>
                         </div>
                     </nav>

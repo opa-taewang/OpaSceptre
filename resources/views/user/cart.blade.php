@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <main class="main">
 			<nav aria-label="breadcrumb" class="breadcrumb-nav">
 				<div class="container">
 					<ol class="breadcrumb">
@@ -10,7 +9,8 @@
 				</div>
 			</nav>
 
-			<div class="container mb-6">
+            <div class="container mb-6">
+            @if ($cart->count())
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="cart-table-container">
@@ -166,6 +166,22 @@
 						</div><!-- End .cart-summary -->
 					</div><!-- End .col-lg-4 -->
 				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</main><!-- End .main -->
+            @else
+                <div class="container col-md-12 border-0 d-flex flex-column">
+                    <div class="mx-auto">
+                            <span class="fa-stack fa-7x text-secondary">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-cart-plus fa-stack-1x fa-inverse"></i> 
+                            </span>
+                            <h3 class="font-weight-bold text-muted">Your cart is empty!</h3>
+                    </div>
+                    <div class="mx-auto">
+                            <h5>Already have an account? </h5>
+                            <p><a href="{{route('login')}}">Login</a> to see the items in your cart.</p>
+                            <p><a href="/"class="btn btn-block btn-secondary py-3 px-4">Start Shopping</a></p>
+                    </div>
+                </div>
+            @endif
+        </div><!-- End .container -->
+        
 @endsection

@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <main class="main">
     <div class="container">
         <div class="home-slider-container">
             <div class="home-slider owl-carousel owl-theme owl-theme-light nav-pos-outside show-nav-hover slide-animate">
@@ -299,5 +298,4 @@
             <a href="#"><img src="#g" width="197" height="150" alt="Feed"></a>
         </div><!-- End .instagram-feed-carousel -->
     </div><!-- End .instagram-section -->
-</main><!-- End .main -->
 @endsection

@@ -40,10 +40,12 @@ Route::get('/cart/total', function () {
 Route::get('/cart', 'CartController@show')->name('cart.show');
 // Route::get('/', 'CartController@index')->name('home');
 // coupon
-Route::post('/coupon/', 'CartController@couponAdd')->name('coupon.add');
-Route::get('/coupon/', 'CartController@couponRemove')->name('coupon.remove');
+Route::post('/coupon', 'CartController@couponAdd')->name('coupon.add');
+Route::get('/coupon', 'CartController@couponRemove')->name('coupon.remove');
 // Checkout page
-Route::get('/checkout/', 'CartController@checkout')->name('checkout');
+Route::get('/checkout', 'ShippingAddressController@checkout')->name('checkout');
+// Order Routes
+
 // Products Front
 Route::get('/product-quick-view/{product}', 'ProductController@quickview')->name('quickview');
 Route::get('/product/{product}', 'ProductController@singleProduct')->name('singleProduct');

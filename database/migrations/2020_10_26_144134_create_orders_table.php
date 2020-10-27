@@ -14,7 +14,15 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->primary('id');
+            $table->integer('user_id')->index();
+            $table->integer('shipping_address_id')->index();
+            $table->integer('coupon_id')->nullable();
+            $table->float('discount_price', 15, 2)->nullable();
+            $table->float('shipping_fee', 15, 2);
+            $table->float('subtotal', 15, 2);
+            $table->float('order_price', 15, 2);
+            $table->integer('order_status', 15, 2);
             $table->timestamps();
         });
     }

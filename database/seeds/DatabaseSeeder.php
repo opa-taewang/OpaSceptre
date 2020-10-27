@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             CategoriesTableSeeder::class,
             SubCategoriesTableSeeder::class,
-            BrandsTableSeeder::class
+            BrandsTableSeeder::class,
+            StatesTableSeeder::class,
+            LGAreasTableSeeder::class
         ]);
     }
 }
