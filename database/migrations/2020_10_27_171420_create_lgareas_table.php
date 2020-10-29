@@ -15,7 +15,7 @@ class CreateLgareasTable extends Migration
     {
         Schema::create('lgareas', function (Blueprint $table) {
             $table->id();
-            $table->integer('state_id')->index();
+            $table->bigInteger('state_id')->index();
             $table->string('lgarea_name');
             $table->float('shipping_fee', 15, 2);
             $table->timestamps();
