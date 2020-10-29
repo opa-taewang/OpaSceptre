@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Coupon;
 use App\Model\Admin\Coupon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class CouponController extends Controller
 {
@@ -30,7 +31,9 @@ class CouponController extends Controller
             'coupon' => ['required', 'min:3', 'alpha'],
             'discount' => ['required', 'min:3', 'numeric']
         ]);
-        if ($request->input('coupon') === $coupon->coupon && $request->input('discount') === $coupon->discount) {
+        $coupon_token = hash('sha1', $request->input('coupon'));
+        $data = array_merge($data, ['coupon_token' => $coupon_token]);
+        if ($coupon_token === $coupon->coupon_token && $request->input('discount') === $coupon->discount) {
             toast('There is nothing to update!', 'info');
         } else {
             $coupon->update($data) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
@@ -44,7 +47,15 @@ class CouponController extends Controller
             'coupon' => ['required', 'min:3', 'alpha'],
             'discount' => ['required', 'min:3', 'numeric']
         ]);
-        Coupon::create($data) ? toast('Added Successfully!', 'success') : '';
+        $coupon_token = hash('sha1', $request->input('coupon'));
+        $coupon = Coupon::where('coupon_token', $coupon_token)->first();
+        if($coupon)
+        {
+            toast('Coupon code already exists!', 'warning');
+        }else{
+            $data = array_merge($data, ['coupon_token' => $coupon_token]);
+            Coupon::create($data) ? toast('Added Successfully!', 'success') : '';
+        }
         return redirect()->route('admin.coupon.show');
     }
 

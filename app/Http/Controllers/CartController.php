@@ -11,6 +11,7 @@ use App\Model\Admin\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -79,7 +80,6 @@ class CartController extends Controller
             'product_quantity' => $request->input('product_quantity'),
             'product_price' => $price * $request->input('product_quantity'),
         ];
-        // dd($data);
         $cart = Cart::updateCart($data, $product->id);
         return $cart;
     }
@@ -94,7 +94,8 @@ class CartController extends Controller
         $request->validate([
             'coupon_code' => ['required', 'alpha_num']
         ]);
-        $coupon = Coupon::where('coupon', $request->input('coupon_code'))->first();
+        $coupon = Coupon::where('coupon_token', hash('sha1', $request->input('coupon_code')))->first();
+        // dd($coupon);
         $coupon_name = env('APP_NAME') . '_coupon';
         // dd($coupon_name);
         if($coupon){
@@ -104,6 +105,7 @@ class CartController extends Controller
             ]);
             toastr('Coupon applied successfully', 'success');
         }else{
+            Session::forget($coupon_name);
             toastr('Invalid Coupon', 'danger');
         }
         return redirect()->back();
