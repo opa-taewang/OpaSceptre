@@ -5905,216 +5905,288 @@ class LGAreasTableSeeder extends Seeder
         DB::table('lgareas')->insert([
             'id' => 737,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Lau',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 738,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Sardauna',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 739,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Takum',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 740,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Ussa',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 741,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Wukari',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 742,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Yorro',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 743,
             'state_id' => 35,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Zing',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 744,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Bade',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 745,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Bursari',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 746,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Damaturu',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 747,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Fika',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 748,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Fune',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 749,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Geidam',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 750,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Gujba',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 751,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Gulani',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 752,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Jakusko',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 753,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Karasuwa',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 754,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Machina',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 755,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Nangere',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 756,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Nguru',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 757,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Potiskum',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 758,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Tarmuwa',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 759,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Yunusari',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 760,
             'state_id' => 36,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Yusufari',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 761,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Anka',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 762,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Bakura',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 763,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Birnin Magaji/Kiyaw',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 764,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Bukkuyum',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 765,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Bungudu',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 766,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Gummi',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 767,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Gusau',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 768,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Kaura Namoda',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 769,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Maradun',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 770,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Maru',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 771,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Shinkafi',
             'shipping_fee' =>  rand(100,10000)
             ]);
         DB::table('lgareas')->insert([
             'id' => 772,
             'state_id' => 37,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+            'updated_at' => now()->format('Y-m-d H:i:s'),
             'lgarea_name'=> 'Talata Mafara',
             'shipping_fee' =>  rand(100,10000)
             ]);
