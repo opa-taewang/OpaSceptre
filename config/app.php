@@ -164,6 +164,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        App\Providers\GlobalFunctionsServiceProvider::class, //Add global functions service provider
 
 
 
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Helper' => App\Helper\Helper::class,
 
     ],
 

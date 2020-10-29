@@ -2339,6 +2339,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -2357,7 +2366,6 @@ var Errors = /*#__PURE__*/function () {
     key: "record",
     value: function record(errors) {
       this.errors = errors.errors;
-      ;
     }
   }]);
 
@@ -2379,16 +2387,15 @@ var Errors = /*#__PURE__*/function () {
       last_name: '',
       street_address: '',
       additional_street_address: '',
-      state: '',
-      lga: '',
+      state: 'Choose state',
+      lga: 'Choose local government area',
       phone_number: '',
       additional_phone_number: ''
     };
   },
   components: {},
   created: function created() {
-    this.fetchStates();
-    this.fetchLGAreas();
+    this.fetchStates(); // this.fetchLGAreas();
   },
   methods: {
     clearError: function clearError() {
@@ -2398,20 +2405,20 @@ var Errors = /*#__PURE__*/function () {
       var _this = this;
 
       axios.get('/states').then(function (response) {
-        _this.colours = response.data.colours;
+        _this.states = response.data;
       });
     },
     fetchLGAreas: function fetchLGAreas() {
       var _this2 = this;
 
-      axios.get('/lgas/' + this.state).then(function (response) {
-        _this2.sizes = response.data.sizes;
+      axios.get('/lgareas/' + this.state).then(function (response) {
+        _this2.lgas = response.data;
       });
     },
     addToCart: function addToCart() {
       var _this3 = this;
 
-      axios.post('/cart/check/' + this.productId, {
+      axios.post('/add-shipping-address', {
         first_name: this.first_name,
         last_name: this.last_name,
         street_address: this.street_address,
@@ -2422,17 +2429,17 @@ var Errors = /*#__PURE__*/function () {
         additional_phone_number: this.additional_phone_number
       }).then(function (response) {
         response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+        window.location = '/shipping-address';
       })["catch"](function (error) {
         _this3.errors.record(error.response.data);
       });
     }
   },
   computed: {
-    btnStyles: function btnStyles() {
-      return {
-        'btn-success': this.statusChange == 1 ? true : false,
-        'btn-danger': this.statusChange != 1 ? true : false
-      };
+    btnStyles: function btnStyles() {// return {
+      //     'btn-success' : (this.statusChange == 1 ? true : false),
+      //     'btn-danger' : (this.statusChange != 1 ? true : false)
+      // }
     }
   }
 });
@@ -55452,282 +55459,28 @@ var render = function() {
         _c("div", { staticClass: "modal-body" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group required-field" }, [
-            _c("label", [_vm._v("First Name ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.first_name,
-                  expression: "first_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "first_name", required: "" },
-              domProps: { value: _vm.first_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.first_name = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "text-danger", attrs: { role: "alert" } },
-              [_vm._v(_vm._s(_vm.errors.get("first_name")))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group required-field" }, [
-            _c("label", [_vm._v("Last Name ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.last_name,
-                  expression: "last_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "last_name", required: "" },
-              domProps: { value: _vm.last_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.last_name = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "text-danger", attrs: { role: "alert" } },
-              [_vm._v(_vm._s(_vm.errors.get("last_name")))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group required-field" }, [
-            _c("label", [_vm._v("Street Address ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.street_address,
-                  expression: "street_address"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "street_address", required: "" },
-              domProps: { value: _vm.street_address },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.street_address = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "text-danger", attrs: { role: "alert" } },
-              [_vm._v(_vm._s(_vm.errors.get("street_address")))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Additional Address Info ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.additional_street_address,
-                  expression: "additional_street_address"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "additional_street_address",
-                required: ""
-              },
-              domProps: { value: _vm.additional_street_address },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.additional_street_address = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "text-danger", attrs: { role: "alert" } },
-              [_vm._v(_vm._s(_vm.errors.get("additional_street_address")))]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { class: { "form-group": true, "has-error": "errors.state" } },
-            [
-              _c("label", { attrs: { for: "product_brand" } }, [
-                _vm._v("State")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "select-custom" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.state,
-                        expression: "state"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { id: "state", name: "state" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.state = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  _vm._l(_vm.sizes, function(size) {
-                    return _c("option", {
-                      key: size,
-                      domProps: { value: size, textContent: _vm._s(size) }
-                    })
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  { staticClass: "text-danger", attrs: { role: "alert" } },
-                  [_vm._v(_vm._s(_vm.errors.get("state")))]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { class: { "form-group": true, "has-error": "errors.lga" } },
-            [
-              _c("label", { attrs: { for: "product_brand" } }, [_vm._v("LGA")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "select-custom" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.lga,
-                        expression: "lga"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { id: "lga", name: "lga" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.lga = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  _vm._l(_vm.colours, function(colour) {
-                    return _c("option", {
-                      key: colour,
-                      domProps: { value: colour, textContent: _vm._s(colour) },
-                      on: {
-                        change: function($event) {
-                          return _vm.clearError()
-                        }
-                      }
-                    })
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  { staticClass: "text-danger", attrs: { role: "alert" } },
-                  [_vm._v(_vm._s(_vm.errors.get("lga")))]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group required-field" }, [
-            _c("label", [_vm._v("Phone Number ")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group mb-3" }, [
-              _vm._m(1),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6 form-group required-field" }, [
+              _c("label", [_vm._v("First Name ")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.phone_number,
-                    expression: "phone_number"
+                    value: _vm.first_name,
+                    expression: "first_name"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: {
-                  type: "tel",
-                  placeholder: "xxx xxx xxxx",
-                  name: "phone_number",
-                  required: ""
-                },
-                domProps: { value: _vm.phone_number },
+                attrs: { type: "text", name: "first_name" },
+                domProps: { value: _vm.first_name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.phone_number = $event.target.value
+                    _vm.first_name = $event.target.value
                   }
                 }
               }),
@@ -55735,43 +55488,326 @@ var render = function() {
               _c(
                 "span",
                 { staticClass: "text-danger", attrs: { role: "alert" } },
-                [_vm._v(_vm._s(_vm.errors.get("phone_number")))]
+                [_vm._v(_vm._s(_vm.errors.get("first_name")))]
               )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group required-field" }, [
-            _c("label", [_vm._v("Additional Phone Number ")]),
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "input-group mb-3" }, [
-              _vm._m(2),
+            _c("div", { staticClass: "col-md-6 form-group required-field" }, [
+              _c("label", [_vm._v("Last Name ")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.additional_phone_number,
-                    expression: "additional_phone_number"
+                    value: _vm.last_name,
+                    expression: "last_name"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: {
-                  type: "tel",
-                  placeholder: "xxx xxx xxxx",
-                  name: "additional_phone_number",
-                  required: ""
-                },
-                domProps: { value: _vm.additional_phone_number },
+                attrs: { type: "text", name: "last_name" },
+                domProps: { value: _vm.last_name },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.additional_phone_number = $event.target.value
+                    _vm.last_name = $event.target.value
                   }
                 }
               }),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-danger", attrs: { role: "alert" } },
+                [_vm._v(_vm._s(_vm.errors.get("last_name")))]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6 form-group required-field" }, [
+              _c("label", [_vm._v("Street Address ")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.street_address,
+                    expression: "street_address"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", name: "street_address" },
+                domProps: { value: _vm.street_address },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.street_address = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-danger", attrs: { role: "alert" } },
+                [_vm._v(_vm._s(_vm.errors.get("street_address")))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 form-group" }, [
+              _c("label", [_vm._v("Additional Address Info ")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.additional_street_address,
+                    expression: "additional_street_address"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", name: "additional_street_address" },
+                domProps: { value: _vm.additional_street_address },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.additional_street_address = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-danger", attrs: { role: "alert" } },
+                [_vm._v(_vm._s(_vm.errors.get("additional_street_address")))]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-6",
+                class: { "form-group": true, "has-error": "errors.state" }
+              },
+              [
+                _c("label", { attrs: { for: "product_brand" } }, [
+                  _vm._v("State")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "select-custom" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.state,
+                          expression: "state"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "state", name: "state" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.state = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            return _vm.fetchLGAreas()
+                          }
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("Choose state")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.states, function(state) {
+                        return _c("option", {
+                          key: state.id,
+                          domProps: {
+                            value: state.id,
+                            textContent: _vm._s(state.state_name)
+                          }
+                        })
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "text-danger", attrs: { role: "alert" } },
+                    [_vm._v(_vm._s(_vm.errors.get("state")))]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-md-6",
+                class: { "form-group": true, "has-error": "errors.lga" }
+              },
+              [
+                _c("label", { attrs: { for: "product_brand" } }, [
+                  _vm._v("LGA")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "select-custom" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.lga,
+                          expression: "lga"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "lga", name: "lga" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.lga = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", [_vm._v("Choose local government area")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.lgas, function(lga) {
+                        return _c("option", {
+                          key: lga.id,
+                          domProps: {
+                            value: lga.id,
+                            textContent: _vm._s(lga.lgarea_name)
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.clearError()
+                            }
+                          }
+                        })
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "text-danger", attrs: { role: "alert" } },
+                    [_vm._v(_vm._s(_vm.errors.get("lga")))]
+                  )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6 form-group required-field" }, [
+              _c("label", [_vm._v("Phone Number ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone_number,
+                      expression: "phone_number"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "tel",
+                    placeholder: "xxx xxx xxxx",
+                    name: "phone_number"
+                  },
+                  domProps: { value: _vm.phone_number },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone_number = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "text-danger", attrs: { role: "alert" } },
+                [_vm._v(_vm._s(_vm.errors.get("phone_number")))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 form-group required-field" }, [
+              _c("label", [_vm._v("Additional Phone Number ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.additional_phone_number,
+                      expression: "additional_phone_number"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "tel",
+                    placeholder: "xxx xxx xxxx",
+                    name: "additional_phone_number"
+                  },
+                  domProps: { value: _vm.additional_phone_number },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.additional_phone_number = $event.target.value
+                    }
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c(
                 "span",

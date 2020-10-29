@@ -43,8 +43,12 @@ Route::get('/cart', 'CartController@show')->name('cart.show');
 Route::post('/coupon', 'CartController@couponAdd')->name('coupon.add');
 Route::get('/coupon', 'CartController@couponRemove')->name('coupon.remove');
 // Checkout page
+Route::get('/shipping-address', 'ShippingAddressController@selectShippingAddress')->name('shippingAddress');
+Route::post('/add-shipping-address', 'ShippingAddressController@addShippingAddress')->name('addShippingAddress');
 Route::get('/add-shipping-address', 'ShippingAddressController@addShippingAddress')->name('addShippingAddress');
 Route::get('/checkout', 'ShippingAddressController@checkout')->name('checkout');
+Route::get('/states', 'ShippingAddressController@getStates')->name('get.states');
+Route::get('/lgareas/{state}', 'ShippingAddressController@getLGAreas')->name('get.lgareas');
 // Order Routes
 
 // Products Front

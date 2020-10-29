@@ -63,7 +63,12 @@ class User extends Authenticatable
 
     public function wishlists()
     {
-        return $this->belongsToMany(Wishlist::class);
+        return $this->belongsTo(Wishlist::class);
+    }
+
+    public function shippingaddresses()
+    {
+        return $this->hasMany(ShippingAddress::class);
     }
 
     public function products()

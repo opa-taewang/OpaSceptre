@@ -14,18 +14,6 @@ use App\ImageModel as AppImageModel;
 
 class ProductController extends Controller
 {
-    private function array_replace_keys($array, $keys)
-    {
-        foreach ($keys as $search => $replace) {
-            if (isset($array[$search])) {
-                $array[$replace] = $array[$search];
-                unset($array[$search]);
-            }
-        }
-
-        return $array;
-    }
-
     public function __construct()
     {
         $this->middleware('admin');
@@ -83,7 +71,7 @@ class ProductController extends Controller
             'hot_new' => ['boolean'],
         ]);
         $data['status'] = 1;
-        $data = $this->array_replace_keys($data, [
+        $data = array_replace_keys($data, [
             'trend_product' => 'trend',
             'product_category'=> 'category_id',
             'product_subcategory'=> 'subcategory_id',
