@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->primary('id');
             $table->integer('user_id')->index();
             $table->integer('shipping_address_id')->index();
-            $table->integer('coupon_id')->nullable();
+            $table->integer('coupon')->nullable();
             $table->float('discount_price', 15, 2)->nullable();
             $table->float('shipping_fee', 15, 2);
             $table->float('subtotal', 15, 2);

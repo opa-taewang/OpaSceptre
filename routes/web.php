@@ -43,6 +43,7 @@ Route::get('/cart', 'CartController@show')->name('cart.show');
 Route::post('/coupon', 'CartController@couponAdd')->name('coupon.add');
 Route::get('/coupon', 'CartController@couponRemove')->name('coupon.remove');
 // Checkout page
+Route::get('/add-shipping-address', 'ShippingAddressController@addShippingAddress')->name('addShippingAddress');
 Route::get('/checkout', 'ShippingAddressController@checkout')->name('checkout');
 // Order Routes
 

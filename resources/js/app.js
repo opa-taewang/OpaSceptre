@@ -73,6 +73,7 @@ Vue.component('add-to-cart', require('./components/addToCart.vue').default);
 Vue.component('add-to-cart-one', require('./components/addToCartOne.vue').default);
 Vue.component('add-to-wishlist', require('./components/addToWishlist.vue').default);
 Vue.component('update-cart', require('./components/updateCart.vue').default);
+Vue.component('add-address', require('./components/addAddress.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -22,83 +22,23 @@
             <div class="col-lg-8">
                 <ul class="checkout-steps">
                     <li>
-                        <h2 class="step-title">Shipping Address</h2>
+                        <div class="checkout-info-box">
+							<h3 class="step-title">Ship To:
+                                <a href="{{route('addShippingAddress')}}" title="Edit" class="step-title-edit" data-toggle="modal" data-target="#addAddress">
+                                    <span class="sr-only">Edit</span><i class="icon-pencil"></i>
+                                </a>
+							</h3>
+                            @foreach ($shipping_address as $address)
+                                <address>
+                                    Desmond Mason <br>
+                                    123 Street Name, City, USA <br>
+                                    Los Angeles, California 03100 <br>
+                                    United States <br>
+                                    (123) 456-7890
+                                </address>
+                            @endforeach
+						</div><!-- End .checkout-info-box -->
 
-                        @foreach ($shipping_address as $address)
-                            
-                        @endforeach
-
-                        <form action="#">
-                            <div class="form-group required-field">
-                                <label>First Name </label>
-                                <input type="text" class="form-control" required>
-                            </div><!-- End .form-group -->
-
-                            <div class="form-group required-field">
-                                <label>Last Name </label>
-                                <input type="text" class="form-control" required>
-                            </div><!-- End .form-group -->
-
-                            <div class="form-group required-field">
-                                <label>Street Address </label>
-                                <input type="text" class="form-control" required>
-                                <input type="text" class="form-control" required>
-                            </div><!-- End .form-group -->
-
-                            <div class="form-group">
-                                <label>State</label>
-                                <div class="select-custom">
-                                    <select class="form-control">
-                                        <option value="CA">California</option>
-                                        <option value="TX">Texas</option>
-                                    </select>
-                                </div><!-- End .select-custom -->
-                            </div><!-- End .form-group -->
-
-                            <div class="form-group">
-                                <label>LGA</label>
-                                <div class="select-custom">
-                                    <select class="form-control">
-                                        <option value="USA">United States</option>
-                                        <option value="Turkey">Turkey</option>
-                                        <option value="China">China</option>
-                                        <option value="Germany">Germany</option>
-                                    </select>
-                                </div><!-- End .select-custom -->
-                            </div><!-- End .form-group -->
-
-                            <div class="form-group required-field">
-                                <label>Phone Number </label>
-                                <div class="form-control-tooltip">
-                                    <input type="tel" class="form-control" required>
-                                    <span class="input-tooltip" data-toggle="tooltip" title="For delivery questions." data-placement="right"><i class="icon-question-circle"></i></span>
-                                </div><!-- End .form-control-tooltip -->
-                            </div><!-- End .form-group -->
-                        </form>
-                    </li>
-
-                    <li>
-                        <div class="checkout-step-shipping">
-                            <h2 class="step-title">Shipping Methods</h2>
-
-                            <table class="table table-step-shipping">
-                                <tbody>
-                                    <tr>
-                                        <td><input type="radio" name="shipping-method" value="flat"></td>
-                                        <td><strong>$20.00</strong></td>
-                                        <td>Fixed</td>
-                                        <td>Flat Rate</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><input type="radio" name="shipping-method" value="best"></td>
-                                        <td><strong>$15.00</strong></td>
-                                        <td>Table Rate</td>
-                                        <td>Best Way</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><!-- End .checkout-step-shipping -->
                     </li>
                 </ul>
             </div><!-- End .col-lg-8 -->
@@ -131,25 +71,7 @@
                                     </td>
                                     <td class="price-col">$152.00</td>
                                 </tr>
-
-                                <tr>
-                                    <td class="product-col">
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="assets/images/products/product-2.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <div>
-                                            <h2 class="product-title">
-                                                <a href="product.html">Inline Headset</a>
-                                            </h2>
-
-                                            <span class="product-qty">Qty: 4</span>
-                                        </div>
-                                    </td>
-                                    <td class="price-col">$192.00</td>
-                                </tr>
-                            </tbody>	
+                            </tbody>
                         </table>
                     </div><!-- End #order-cart-section -->
                 </div><!-- End .order-summary -->
@@ -164,4 +86,14 @@
             </div><!-- End .col-lg-8 -->
         </div><!-- End .row -->
     </div><!-- End .container -->
+
+    <!-- Modal -->
+    <div class="modal fade col-lg-4 col-md-5 mx-auto" id="addAddress" tabindex="-1" role="dialog" aria-labelledby="addAddressLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <add-address></add-address>
+        </div>
+    </div>
+    </div>
+
 @endsection
