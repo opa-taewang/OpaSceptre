@@ -24,7 +24,7 @@
                     <li>
                         <div class="checkout-info-box">
 							<h3 class="step-title">Ship To:
-                                <a href="{{route('addShippingAddress')}}" title="Edit" class="step-title-edit" data-toggle="modal" data-target="#addAddress">
+                                <a href="#addAddress" title="Edit" class="step-title-edit" data-toggle="modal">
                                     <span class="sr-only">Edit</span><i class="icon-pencil"></i>
                                 </a>
                             </h3>
@@ -39,6 +39,14 @@
                                         Nigeria<br>
                                         (234) {{$shipping_address->contact_number}}
                                     </address>
+                                    <div class="row">
+                                        <div class="mr-auto px-3">
+                                            <update-address address-id="{{$shipping_address->id}}" address-status={{$shipping_address->address_status}}></update-address>
+                                        </div>
+                                        <div class="ml-auto px-3">
+                                            <default-address></default-address>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>
@@ -102,5 +110,4 @@
         </div>
     </div>
     </div>
-
 @endsection

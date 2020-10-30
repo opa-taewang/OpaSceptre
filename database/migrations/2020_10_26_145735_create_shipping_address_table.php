@@ -13,7 +13,7 @@ class CreateShippingAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipping_address', function (Blueprint $table) {
+        Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->index();
             $table->string('first_name');
@@ -24,6 +24,7 @@ class CreateShippingAddressTable extends Migration
             $table->bigInteger('lgarea_id')->index();
             $table->bigInteger('contact_number');
             $table->bigInteger('additional_contact_number')->nullable();
+            $table->boolean('address_default')->default(1)->change();
             $table->timestamps();
         });
     }

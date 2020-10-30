@@ -72,5 +72,10 @@ class ShippingAddressController extends Controller
         $data = State::findOrFail($state_id)->lgareas;
         return response()->json($data);
     }
+
+    public function makeDefaultAddress(ShippingAddress $shipping_address)
+    {
+        return true;
+    }
 }
 
