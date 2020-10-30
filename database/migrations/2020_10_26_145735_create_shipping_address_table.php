@@ -24,7 +24,7 @@ class CreateShippingAddressTable extends Migration
             $table->bigInteger('lgarea_id')->index();
             $table->bigInteger('contact_number');
             $table->bigInteger('additional_contact_number')->nullable();
-            $table->boolean('address_default')->default(1)->change();
+            $table->boolean('address_default')->default(1);
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateShippingAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipping_address');
+        Schema::dropIfExists('shipping_addresses');
     }
 }
