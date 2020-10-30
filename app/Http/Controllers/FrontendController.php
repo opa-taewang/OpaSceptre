@@ -23,7 +23,7 @@ class FrontendController extends Controller
         DB::table('newsletters')->insert([
             'email' => $request->input('email'),
             'created_at' => now()
-        ]) ? toast('you have subscribed successfullty', 'success') : '';
+        ]) ? toastr('you have subscribed successfullty', 'success') : '';
         return redirect()->back();
     }
 }

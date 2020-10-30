@@ -2710,20 +2710,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['addressId', 'addressStatus'],
-  mounted: function mounted() {
-    console.log(this.addressStatus);
+  mounted: function mounted() {// console.log(this.addressStatus)
   },
   data: function name(params) {
-    return {// statusChange: this.addressStatus,
+    return {
+      statusChange: this.addressStatus
     };
   },
   methods: {
-    addressStatus: function addressStatus() {
+    addressDefault: function addressDefault() {
       axios.post('/makeDefaultAddress/' + this.addressId).then(function (response) {
         // window.location = '/shipping-address';
         // response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
@@ -2739,7 +2736,7 @@ __webpack_require__.r(__webpack_exports__);
     textStyles: function textStyles() {
       return {
         'text-success': this.statusChange == 1 ? true : false,
-        'text-danger': this.statusChange != 1 ? true : false
+        'text-secondary': this.statusChange != 1 ? true : false
       };
     }
   }
@@ -56482,34 +56479,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
     _c(
       "div",
       {
         staticClass: "step-title-edit",
-        class: _vm.textStyles,
         attrs: { title: "Edit" },
-        on: { click: _vm.addressStatus }
+        on: { click: _vm.addressDefault }
       },
-      [
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Make Defaualt")]),
-        _c("i", { staticClass: "fas fa-star " })
-      ]
+      [_c("h5", [_vm._v("Make Default")])]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#addAddress" } }, [
-      _c("span", { staticClass: "sr-only" }, [_vm._v("Make Defaualt")]),
-      _c("i", { staticClass: "fas fa-star " })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -37,7 +37,7 @@ class BrandController extends Controller
         Brand::create([
             'brand_name' => $request->input('brand_name'),
             'brand_logo' => $brand_logo['public_id']
-        ]) ? toast('Brand added successfully') : '';
+        ]) ? toastrrr('Brand added successfully') : '';
         return redirect()->route('admin.brand.show');
     }
 
@@ -53,7 +53,7 @@ class BrandController extends Controller
             'brand_logo' => ['image', 'nullable']
         ]);
         if ($request->input('brand_name') === $brand->brand_name && !request('brand_logo')) {
-            toast('There is nothing to update!', 'info');
+            toastrrr('There is nothing to update!', 'info');
         } else {
             // Update brand logo
             if(request('brand_logo')){
@@ -67,10 +67,10 @@ class BrandController extends Controller
                     "crop" => "pad",
                     "use_filename" => false,
                     "folder" => "brands/"));
-                $brand->update(['brand_logo' => $brand_logo['public_id']]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+                $brand->update(['brand_logo' => $brand_logo['public_id']]) ? toastrrr('Updated Successfully!', 'success') : toastrrr('Update failed!', 'failure');
             }
             // Update brand name
-            $brand->update(['brand_name' => $request->input('brand_name')]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+            $brand->update(['brand_name' => $request->input('brand_name')]) ? toastrrr('Updated Successfully!', 'success') : toastrrr('Update failed!', 'failure');
             return redirect()->route('admin.brand.show');
         }
         return redirect()->route('admin.brand.show');
@@ -81,7 +81,7 @@ class BrandController extends Controller
         $ch = curl_init('https://res.cloudinary.com/opasceptre/image/upload/v1600627348/'.$brand->brand_logo);
             curl_exec($ch);
             curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200 ? Cloudinary\Uploader::destroy($brand->brand_logo) : '';
-        $brand->delete($brand) ? toast('Deleted Successfully!', 'success') : '';
+        $brand->delete($brand) ? toastrrr('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.brand.show');
     }
 }

@@ -1,10 +1,7 @@
 <template>
     <div class="container">
-        <a href="#addAddress">
-            <span class="sr-only">Make Defaualt</span><i class="fas fa-star "></i>
-        </a>
-        <div title="Edit" class="step-title-edit"  v-bind:class="textStyles" @click="addressStatus">
-            <span class="sr-only">Make Defaualt</span><i class="fas fa-star "></i>
+        <div title="Edit" class="step-title-edit" @click="addressDefault">
+            <h5>Make Default</h5>
         </div>
         <!-- <button class="btn btn-sm btn-block px-4" type="button" v-text="buttonText"></button> -->
     </div>
@@ -15,17 +12,17 @@
         props: ['addressId', 'addressStatus'],
 
         mounted() {
-            console.log(this.addressStatus)
+            // console.log(this.addressStatus)
         },
 
         data: function name(params) {
             return {
-                // statusChange: this.addressStatus,
+                statusChange: this.addressStatus,
             }
         },
 
         methods: {
-            addressStatus() {
+            addressDefault() {
                 axios.post('/makeDefaultAddress/'+ this.addressId)
                     .then(response => {
                         // window.location = '/shipping-address';
@@ -45,7 +42,7 @@
             textStyles(){
                 return {
                     'text-success' : (this.statusChange == 1 ? true : false),
-                    'text-danger' : (this.statusChange != 1 ? true : false)
+                    'text-secondary' : (this.statusChange != 1 ? true : false)
                 }
             },
         }

@@ -31,9 +31,9 @@ class CategoryController extends Controller
             'category_name' => ['required', 'min:3', 'unique:categories']
         ]);
         if($request->input('category_name') === $category->category_name){
-            toast('There is nothing to update!', 'info');
+            toastr('There is nothing to update!', 'info');
         }else{
-            $category->update($data) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+            $category->update($data) ? toastr('Updated Successfully!', 'success') : toastr('Update failed!', 'failure');
         }
         return redirect()->route('admin.category.show');
     }
@@ -43,13 +43,13 @@ class CategoryController extends Controller
         $data  = $request->validate([
             'category_name' => ['required', 'min:3', 'unique:categories']
         ]);
-        Category::create($data) ? toast('Added Successfully!', 'success'): '';
+        Category::create($data) ? toastr('Added Successfully!', 'success'): '';
         return redirect()->route('admin.category.show');
     }
 
     public function delete(Category $category)
     {
-        $category->delete($category) ? toast('Deleted Successfully!', 'success') : '';
+        $category->delete($category) ? toastr('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.category.show');
     }
 }

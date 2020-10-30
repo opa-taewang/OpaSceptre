@@ -78,7 +78,7 @@ class ProductController extends Controller
             'product_brand'=> 'brand_id']);
         $uploads = ['image_one', 'image_two', 'image_three', 'image_four'];
         $data = AppImageModel::ImageUpload($data, $uploads, 'products');
-        Product::create($data) ? toast('Producct added successfully') : '';
+        Product::create($data) ? toastr('Producct added successfully') : '';
         return redirect()->route('admin.product.index');
     }
 
@@ -127,7 +127,7 @@ class ProductController extends Controller
             'product_brand' => 'brand_id'
         ]);
         // Update product details
-        $product->update($data) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+        $product->update($data) ? toastr('Updated Successfully!', 'success') : toastr('Update failed!', 'failure');
         return redirect()->route('admin.product.show', $product);
     }
 
@@ -152,9 +152,9 @@ class ProductController extends Controller
         // Update product images
         if(empty($data))
         {
-            toast('Nothing to Update!', 'warning');
+            toastr('Nothing to Update!', 'warning');
         }else{
-            $product->update($data) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+            $product->update($data) ? toastr('Updated Successfully!', 'success') : toastr('Update failed!', 'failure');
         }
         return redirect()->route('admin.product.show', $product);
     }
@@ -180,7 +180,7 @@ class ProductController extends Controller
             'image_four' => $product->image_four,
         ];
         AppImageModel::ImageDelete($uploads);
-        $product->delete($product) ? toast('Deleted Successfully!', 'success') : '';
+        $product->delete($product) ? toastr('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.product.index');
     }
 

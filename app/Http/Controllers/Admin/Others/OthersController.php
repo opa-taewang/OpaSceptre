@@ -34,7 +34,7 @@ class OthersController extends Controller
         DB::table('newsletters')->find($newsletter) ?  $newsletter = DB::table('newsletters')->find($newsletter) : abort(404);
         if($request->input('email') === $newsletter->email)
         {
-            toast('There is nothing to update', 'info');
+            toastr('There is nothing to update', 'info');
         }else {
             $request->validate([
                 'email' => ['required', 'email', 'unique:newsletters']
@@ -43,7 +43,7 @@ class OthersController extends Controller
             DB::table('newsletters')->where('id', $newsletter->id)->update([
                 'email' => $request->input('email'),
                 'updated_at' => now()
-            ]) ? toast('you have updated subscriber successfullty', 'success') : '';
+            ]) ? toastr('you have updated subscriber successfullty', 'success') : '';
         }
         return redirect()->route('admin.newsletter.show');
     }
@@ -53,7 +53,7 @@ class OthersController extends Controller
 
         DB::table('newsletters')->find($newsletter) ?  $newsletter = DB::table('newsletters')->find($newsletter) : abort(404);
 
-        DB::table('newsletters')->where('id', $newsletter->id)->delete() ? toast('you have deleted subscriber successfullty', 'success') : '';
+        DB::table('newsletters')->where('id', $newsletter->id)->delete() ? toastr('you have deleted subscriber successfullty', 'success') : '';
         return redirect()->route('admin.newsletter.show');
     }
 }

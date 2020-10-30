@@ -37,6 +37,7 @@ class ShippingAddressController extends Controller
             'phone_number' => 'contact_number',
             'additional_phone_number' => 'additional_contact_number'
         ]);
+        ShippingAddress::where('user_id', Auth::id())->update(['address_default' => 0]);
         // Save shipping address using the authenticated user
         return User::find(Auth::id())->shippingaddresses()->create($data) ? ['message' => "Address added successfully", 'type' => 'success'] : ['message' => "Address addition failed",'type' => 'warning'];
     }
@@ -44,10 +45,11 @@ class ShippingAddressController extends Controller
     public function selectShippingAddress()
     {
         $shipping_addresses = Auth::user()->shippingaddresses;
-        $shipping_addresses = ShippingAddress::where('shipping_address.user_id', Auth::id())
-            ->join('states', 'states.id', '=', 'shipping_address.state_id')
-            ->join('lgareas', 'lgareas.id', '=', 'shipping_address.lgarea_id')
-            ->select('shipping_address.*', 'states.state_name', 'lgareas.lgarea_name', 'lgareas.shipping_fee')
+        $shipping_addresses = ShippingAddress::where('shipping_addresses.user_id', Auth::id())
+            ->join('states', 'states.id', '=', 'shipping_addresses.state_id')
+            ->join('lgareas', 'lgareas.id', '=', 'shipping_addresses.lgarea_id')
+            ->select('shipping_addresses.*', 'states.state_name', 'lgareas.lgarea_name', 'lgareas.shipping_fee')
+            ->orderByDesc('shipping_addresses.address_default')
             ->get();
         $carts = Cart::get();
         $total = Cart::total();
@@ -75,6 +77,7 @@ class ShippingAddressController extends Controller
 
     public function makeDefaultAddress(ShippingAddress $shipping_address)
     {
+        toastr('Shipping Address Chosen', 'success');
         return true;
     }
 }

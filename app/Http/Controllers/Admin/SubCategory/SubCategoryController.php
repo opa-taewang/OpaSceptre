@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
         SubCategory::create([
             'subcategory_name' => $request->input('subcategory_name'),
             'category_id' => $request->input('category')
-        ]) ? toast('Added successfully', 'success'): '';
+        ]) ? toastr('Added successfully', 'success'): '';
         return redirect()->route('admin.subcategory.show');
     }
 
@@ -49,19 +49,19 @@ class SubCategoryController extends Controller
             'category' => ['required', 'min:1', 'numeric']
         ]);
         if ($request->input('subcategory_name') === $subcategory->subcategory_name && $request->input('category') == $subcategory->category_id) {
-            toast('There is nothing to update!', 'info');
+            toastr('There is nothing to update!', 'info');
         } else {
             $subcategory->update([
                 'subcategory_name' => $request->input('subcategory_name'),
                 'category_id' => $request->input('category')
-            ]) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+            ]) ? toastr('Updated Successfully!', 'success') : toastr('Update failed!', 'failure');
         }
         return redirect()->route('admin.subcategory.show');
     }
 
     public function delete(Subcategory $subcategory)
     {
-        $subcategory->delete($subcategory) ? toast('Deleted Successfully!', 'success') : '';
+        $subcategory->delete($subcategory) ? toastr('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.subcategory.show');
     }
 }

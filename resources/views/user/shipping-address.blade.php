@@ -41,10 +41,14 @@
                                     </address>
                                     <div class="row">
                                         <div class="mr-auto px-3">
-                                            <update-address address-id="{{$shipping_address->id}}" address-status={{$shipping_address->address_status}}></update-address>
+                                            <update-address address-id="{{$shipping_address->id}}"></update-address>
                                         </div>
                                         <div class="ml-auto px-3">
-                                            <default-address></default-address>
+                                            @if ($shipping_address->address_default == 1)
+                                                <span class="sr-only">Default Address</span><i class="fas fa-star text-success"></i><i class="far fa-star text-success"></i>
+                                            @else
+                                                <default-address address-id="{{$shipping_address->id}}" address-status={{$shipping_address->address_default}}></default-address>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

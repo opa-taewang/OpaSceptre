@@ -34,9 +34,9 @@ class CouponController extends Controller
         $coupon_token = hash('sha1', $request->input('coupon'));
         $data = array_merge($data, ['coupon_token' => $coupon_token]);
         if ($coupon_token === $coupon->coupon_token && $request->input('discount') === $coupon->discount) {
-            toast('There is nothing to update!', 'info');
+            toastr('There is nothing to update!', 'info');
         } else {
-            $coupon->update($data) ? toast('Updated Successfully!', 'success') : toast('Update failed!', 'failure');
+            $coupon->update($data) ? toastr('Updated Successfully!', 'success') : toastr('Update failed!', 'failure');
         }
         return redirect()->route('admin.coupon.show');
     }
@@ -51,17 +51,17 @@ class CouponController extends Controller
         $coupon = Coupon::where('coupon_token', $coupon_token)->first();
         if($coupon)
         {
-            toast('Coupon code already exists!', 'warning');
+            toastr('Coupon code already exists!', 'warning');
         }else{
             $data = array_merge($data, ['coupon_token' => $coupon_token]);
-            Coupon::create($data) ? toast('Added Successfully!', 'success') : '';
+            Coupon::create($data) ? toastr('Added Successfully!', 'success') : '';
         }
         return redirect()->route('admin.coupon.show');
     }
 
     public function delete(Coupon $coupon)
     {
-        $coupon->delete($coupon) ? toast('Deleted Successfully!', 'success') : '';
+        $coupon->delete($coupon) ? toastr('Deleted Successfully!', 'success') : '';
         return redirect()->route('admin.coupon.show');
     }
 }
