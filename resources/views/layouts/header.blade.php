@@ -56,12 +56,6 @@
                                         <a href="{{ route('register') }}">Register</a>
                                     @endif
                                 @endauth
-                                @guest
-
-                                @endguest
-                                @auth
-
-                                @endauth
                             </li>
                         </ul>
                         <span class="separator d-none d-xl-block"></span>
