@@ -123,7 +123,7 @@ class Errors{
         props: ['addressId'],
 
         mounted() {
-            console.log('Component mounted.')
+
         },
 
         data() {
@@ -137,14 +137,15 @@ class Errors{
                 last_name: '',
                 street_address:'',
                 additional_street_address:'',
-                state:'Choose state',
-                lga:'Choose local government area',
+                state: '',
+                lga: '',
                 phone_number:'',
                 additional_phone_number:''
             }
         },
         components:{},
         created(){
+            this.fetchData();
             this.fetchStates();
             // this.fetchLGAreas();
         },
@@ -152,7 +153,7 @@ class Errors{
 
         methods: {
             clearError(){
-                console.log('ksksk')
+                // console.log('ksksk')
             },
             fetchStates(){
                 axios.get('/states').then(response => {
@@ -164,8 +165,22 @@ class Errors{
                     this.lgas = response.data
                 });
             },
+            fetchData(){
+                axios.get('/shipping-address/'+this.addressId+'/edit').then(response => {
+                    this.addressData = response.data,
+                    this.first_name = response.data.first_name,
+                    this.last_name = response.data.last_name,
+                    this.street_address =response.data.street_address,
+                    this.additional_street_address =response.data.additional_address_info,
+                    this.state = response.data.state_id,
+                    this.lga = response.data.lgarea_id,
+                    this.phone_number =response.data.contact_number,
+                    this.additional_phone_number =response.data.additional_contact_number
+                    this.fetchLGAreas()
+                });
+            },
             addToCart() {
-                axios.post('/add-shipping-address', {
+                axios.post('/shipping-address/'+this.addressId, {
                         first_name: this.first_name,
                         last_name: this.last_name,
                         street_address: this.street_address,
@@ -176,8 +191,7 @@ class Errors{
                         additional_phone_number: this.additional_phone_number
                 })
                 .then(function (response) {
-                        response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
-                        window.location = '/shipping-address';
+                    location.reload();
                 }).catch(error => {
                         this.errors.record(error.response.data)
                     }
