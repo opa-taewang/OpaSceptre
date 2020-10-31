@@ -2722,6 +2722,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addressDefault: function addressDefault() {
       axios.post('/makeDefaultAddress/' + this.addressId).then(function (response) {
+        // window.location = '/shipping-address';
+        // response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
         location.reload();
       }); // .catch(errors =>{
       //     if(errors.response.status == 401){
@@ -2942,7 +2944,9 @@ var Errors = /*#__PURE__*/function () {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['addressId'],
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
   data: function data() {
     return {
       url: 'updateAddress' + this.addressId,
@@ -2954,19 +2958,19 @@ var Errors = /*#__PURE__*/function () {
       last_name: '',
       street_address: '',
       additional_street_address: '',
-      state: '',
-      lga: '',
+      state: 'Choose state',
+      lga: 'Choose local government area',
       phone_number: '',
       additional_phone_number: ''
     };
   },
   components: {},
   created: function created() {
-    this.fetchData();
     this.fetchStates(); // this.fetchLGAreas();
   },
   methods: {
-    clearError: function clearError() {// console.log('ksksk')
+    clearError: function clearError() {
+      console.log('ksksk');
     },
     fetchStates: function fetchStates() {
       var _this = this;
@@ -2982,19 +2986,10 @@ var Errors = /*#__PURE__*/function () {
         _this2.lgas = response.data;
       });
     },
-    fetchData: function fetchData() {
+    addToCart: function addToCart() {
       var _this3 = this;
 
-      axios.get('/shipping-address/' + this.addressId + '/edit').then(function (response) {
-        _this3.addressData = response.data, _this3.first_name = response.data.first_name, _this3.last_name = response.data.last_name, _this3.street_address = response.data.street_address, _this3.additional_street_address = response.data.additional_address_info, _this3.state = response.data.state_id, _this3.lga = response.data.lgarea_id, _this3.phone_number = response.data.contact_number, _this3.additional_phone_number = response.data.additional_contact_number;
-
-        _this3.fetchLGAreas();
-      });
-    },
-    addToCart: function addToCart() {
-      var _this4 = this;
-
-      axios.post('/shipping-address/' + this.addressId, {
+      axios.post('/add-shipping-address', {
         first_name: this.first_name,
         last_name: this.last_name,
         street_address: this.street_address,
@@ -3004,9 +2999,10 @@ var Errors = /*#__PURE__*/function () {
         phone_number: this.phone_number,
         additional_phone_number: this.additional_phone_number
       }).then(function (response) {
-        location.reload();
+        response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+        window.location = '/shipping-address';
       })["catch"](function (error) {
-        _this4.errors.record(error.response.data);
+        _this3.errors.record(error.response.data);
       });
     }
   },

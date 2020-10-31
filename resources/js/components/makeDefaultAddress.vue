@@ -25,6 +25,8 @@
             addressDefault() {
                 axios.post('/makeDefaultAddress/'+ this.addressId)
                     .then(response => {
+                        // window.location = '/shipping-address';
+                            // response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
                             location.reload();
                     })
 

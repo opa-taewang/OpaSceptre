@@ -100,7 +100,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="checkout-steps-action">
-                    <a href="{{route('checkout')}}" class="btn btn-primary float-right">NEXT</a>
+                    <a href="checkout-review.html" class="btn btn-primary float-right">NEXT</a>
                 </div><!-- End .checkout-steps-action -->
             </div><!-- End .col-lg-8 -->
         </div><!-- End .row -->
