@@ -120,58 +120,7 @@
                             </form>
                         </div>
                         <div class="dropdown cart-dropdown">
-                            @php
-                                $carts = \App\Cart::get(2);
-                                // dd($carts);
-                                $total = \App\Cart::total();
-                            @endphp
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <i class="fas fa-shopping-bag"></i>
-                                <span class="cart-count badge-circle">2</span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="dropdownmenu-wrapper">
-                                    <div class="dropdown-cart-header">
-                                        <span>{{$total->cart_quantity}} Items</span>
-
-                                        <a href="cart.html" class="float-right">View Cart</a>
-                                    </div><!-- End .dropdown-cart-header -->
-
-                                    <div class="dropdown-cart-products">
-                                        @foreach ($carts as $cart)
-                                            <div class="product">
-                                            <div class="product-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">{{$cart->product_name}}</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">{{$cart->product_quantity}}</span>
-                                                    x {{$cart->product_price/$cart->product_quantity}}
-                                                </span>
-                                            </div><!-- End .product-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="https://res.cloudinary.com/opasceptre/image/upload/{{$cart->product_image}}" alt="product" width="80" height="80" />
-                                                </a>
-                                                <a href="#" id="cartremove" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                            </figure>
-                                            </div><!-- End .product -->
-                                        @endforeach
-                                    </div><!-- End .cart-product -->
-
-                                    <div class="dropdown-cart-total">
-                                        <span>Subtotal:</span>
-
-                                        <span class="cart-total-price float-right">${{$total->total_price}}</span>
-                                    </div><!-- End .dropdown-cart-total -->
-
-                                    <div class="dropdown-cart-action">
-                                        <a href="checkout-shipping.html" class="btn btn-primary btn-block">Checkout</a>
-                                    </div><!-- End .dropdown-cart-total -->
-                                </div><!-- End .dropdownmenu-wrapper -->
-                            </div><!-- End .dropdown-menu -->
+                            <header-cart></header-cart>
                         </div>
 
                     </div><!-- End .header-right -->

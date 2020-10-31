@@ -34,8 +34,15 @@ Route::post('/cart/update/{product}', 'CartController@CartUpdate');
 Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocartfast');
 Route::get('/cart/check', 'CartController@check')->name('checkcart');
 Route::delete('/cart/{product}/remove', 'CartController@removeFromCart')->name('cart.remove');
-Route::get('/cart/total', function () {
-    return \App\Cart::total();
+Route::post('/cart/{product}/remove', 'CartController@vueRemoveCart');
+Route::get('/cart/header', function () {
+    $carts = \App\Cart::get(2);
+    $total = \App\Cart::total();
+    $data =  [
+            'carts' =>   $carts,
+            'total' =>   $total
+            ];
+    return $data;
 });
 Route::get('/cart', 'CartController@show')->name('cart.show');
 // Route::get('/', 'CartController@index')->name('home');

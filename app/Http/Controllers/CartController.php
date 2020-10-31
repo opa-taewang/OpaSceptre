@@ -89,6 +89,15 @@ class CartController extends Controller
         return redirect()->route('cart.show');
     }
 
+    public function vueRemoveCart(Product $product)
+    {
+        Cart::remove($product->id) ? $notification = [
+                'message' => "Removed from Cart successfully",
+                'type' => 'success'
+            ] : '';
+        return $notification;
+    }
+
     public function couponAdd(Request $request)
     {
         $request->validate([

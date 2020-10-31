@@ -76,6 +76,7 @@ Vue.component('update-cart', require('./components/updateCart.vue').default);
 Vue.component('add-address', require('./components/addAddress.vue').default);
 Vue.component('update-address', require('./components/updateAddress.vue').default);
 Vue.component('default-address', require('./components/makeDefaultAddress.vue').default);
+Vue.component('header-cart', require('./components/headerCart.vue').default);
 
 
 /**
