@@ -1,5 +1,5 @@
-<template>
-    <div class="container">
+<template :key="componentKey" @click="reRender">
+    <div :key="componentKey" class="container">
             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-count badge-circle">{{total.cart_quantity}}</span>
@@ -48,7 +48,7 @@
         </div>
 </template>
 <script>
-
+    // import headerCart from './headerCart'
     export default {
         props: [],
 
@@ -60,12 +60,18 @@
             return {
                 carts: [],
                 total: [],
+                componentKey: 0,
             }
         },
-        components:{},
         created(){
             this.fetchCart();
             // this.fetchLGAreas();
+            // this.$nextTick(function () {
+            //     window.setInterval(() => {
+            //         this.componentKey++;
+            //         console.log(this.componentKey);
+            //     },5000);
+            // })
         },
 
 
@@ -79,27 +85,10 @@
             removeCartItem(cartId){
                 axios.post('/cart/'+cartId+'/remove').then(response => {
                     response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+                    this.$root.$refs.A.reRender();
+                    // this.$emit('my-custom-event')
                 });
             },
-            addToCart() {
-                axios.post('/add-shipping-address', {
-                        first_name: this.first_name,
-                        last_name: this.last_name,
-                        street_address: this.street_address,
-                        additional_street_address: this.additional_street_address,
-                        state: this.state,
-                        lga: this.lga,
-                        phone_number: this.phone_number,
-                        additional_phone_number: this.additional_phone_number
-                })
-                .then(function (response) {
-                        response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
-                        window.location = '/shipping-address';
-                }).catch(error => {
-                        this.errors.record(error.response.data)
-                    }
-                    );
-            }
         },
 
         computed: {

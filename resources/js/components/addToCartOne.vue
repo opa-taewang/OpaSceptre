@@ -25,6 +25,8 @@
                 axios.post('/cart/'+ this.productId)
                     .then(response => {
                         response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+                        this.$root.$refs.A.reRender();
+                        // this.$emit('my-custom-event')
                     })
 
                     // .catch(errors =>{

@@ -77,6 +77,7 @@ Vue.component('add-address', require('./components/addAddress.vue').default);
 Vue.component('update-address', require('./components/updateAddress.vue').default);
 Vue.component('default-address', require('./components/makeDefaultAddress.vue').default);
 Vue.component('header-cart', require('./components/headerCart.vue').default);
+Vue.component('render-header-cart', require('./components/renderHeaderCart.vue').default);
 
 
 /**
@@ -90,7 +91,20 @@ Vue.component('header-cart', require('./components/headerCart.vue').default);
 const app = new Vue({
     el: '#app',
 });
-// Custom Javascript
-require('./custom.js')
+
+// export const eventBus = new Vue(); // added line
+
+// import {eventBus} from "/app.js";
+
+
+
+// new Vue({
+//     // ...
+//     // ...
+//     // ...
+//     // render: h => h(App)
+// }).$mount('#app');
+// // Custom Javascript
+// require('./custom.js')
 
 

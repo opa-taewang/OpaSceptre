@@ -114,7 +114,7 @@
                             </form>
                         </div>
                         <div class="dropdown cart-dropdown">
-                            <header-cart></header-cart>
+                            <render-header-cart></render-header-cart>
                         </div>
 
                     </div><!-- End .header-right -->
