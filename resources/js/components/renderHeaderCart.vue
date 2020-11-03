@@ -16,12 +16,7 @@
             this.$root.$refs.A = this;
         },
         mounted() {
-            // this.$nextTick(function () {
-            //     // window.setInterval(() => {
-            //         this.componentKey++;
-            //     //     console.log(this.componentKey);
-            //     // },5000);
-            // })
+
         },
 
         data() {

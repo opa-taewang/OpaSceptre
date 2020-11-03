@@ -9,7 +9,7 @@
         props: ['productId', 'status'],
 
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
         },
 
         data: function name(params) {

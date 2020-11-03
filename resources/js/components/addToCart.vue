@@ -58,7 +58,7 @@ class Errors{
         props: ['productId', 'status', 'colour', 'size'],
 
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
         },
 
         data() {
@@ -69,7 +69,7 @@ class Errors{
                 errors: new Errors(),
                 product_colour: '',
                 product_size: '',
-                product_quantity: ''
+                product_quantity: 1
             }
         },
         components:{},
@@ -86,11 +86,13 @@ class Errors{
             fetchColour(){
                 axios.get('/product-colour-size/'+this.productId).then(response => {
                     this.colours = response.data.colours
+                    this.product_colour = response.data.colours[0];
                 });
             },
             fetchSize(){
                 axios.get('/product-colour-size/'+this.productId).then(response => {
                     this.sizes = response.data.sizes
+                    this.product_size = response.data.sizes[0]
                 });
             },
             addToCart() {
@@ -101,10 +103,14 @@ class Errors{
                 })
                 .then(function (response) {
                         response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+                        // this.$root.$refs.A.reRender();
+                        // this.$root.$refs.A.reRender();
+                        // console.log('jdjdjdj');
                 }).catch(error => {
                         this.errors.record(error.response.data)
                     }
                     );
+                this.$root.$refs.A.reRender();
             }
         },
 

@@ -113,7 +113,7 @@ class Errors{
         props: [],
 
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
         },
 
         data() {

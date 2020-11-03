@@ -55,7 +55,7 @@ class CartController extends Controller
             'product_quantity' => ['required','numeric']
         ]);
         $price = isset($product->discount_price) ? $product->discount_price : $product->selling_price;
-        $quantity = $request->input('quantity') ? $request->input('quantity') : 1;
+        $quantity = $request->input('product_quantity') ? $request->input('product_quantity') : 1;
         $data = [
             'product_id' => $product->id,
             'product_name' => $product->product_name,
@@ -65,7 +65,6 @@ class CartController extends Controller
             'product_colour' => $product->product_size,
             'product_image' => $product->image_one,
         ];
-        // dd($data);
         $cart = Cart::add($data);
         return $cart;
     }

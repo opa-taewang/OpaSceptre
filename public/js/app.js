@@ -2233,8 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   }
 });
 
@@ -2374,8 +2373,7 @@ var Errors = /*#__PURE__*/function () {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   data: function data() {
     return {
@@ -2526,8 +2524,7 @@ var Errors = /*#__PURE__*/function () {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['productId', 'status', 'colour', 'size'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   data: function data() {
     return {
@@ -2537,7 +2534,7 @@ var Errors = /*#__PURE__*/function () {
       errors: new Errors(),
       product_colour: '',
       product_size: '',
-      product_quantity: ''
+      product_quantity: 1
     };
   },
   components: {},
@@ -2554,6 +2551,7 @@ var Errors = /*#__PURE__*/function () {
 
       axios.get('/product-colour-size/' + this.productId).then(function (response) {
         _this.colours = response.data.colours;
+        _this.product_colour = response.data.colours[0];
       });
     },
     fetchSize: function fetchSize() {
@@ -2561,6 +2559,7 @@ var Errors = /*#__PURE__*/function () {
 
       axios.get('/product-colour-size/' + this.productId).then(function (response) {
         _this2.sizes = response.data.sizes;
+        _this2.product_size = response.data.sizes[0];
       });
     },
     addToCart: function addToCart() {
@@ -2571,10 +2570,13 @@ var Errors = /*#__PURE__*/function () {
         product_size: this.product_size,
         product_quantity: this.product_quantity
       }).then(function (response) {
-        response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message);
+        response.data.type == 'success' ? toastr.success(response.data.message) : toastr.warning(response.data.message); // this.$root.$refs.A.reRender();
+        // this.$root.$refs.A.reRender();
+        // console.log('jdjdjdj');
       })["catch"](function (error) {
         _this3.errors.record(error.response.data);
       });
+      this.$root.$refs.A.reRender();
     }
   },
   computed: {
@@ -2608,8 +2610,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['productId', 'status'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   data: function name(params) {
     return {
@@ -2662,8 +2663,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['productId', 'status'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   data: function name(params) {
     return {
@@ -2758,8 +2758,7 @@ __webpack_require__.r(__webpack_exports__);
 // import headerCart from './headerCart'
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  mounted: function mounted() {
-    console.log('Header Cart mounted.');
+  mounted: function mounted() {// console.log('Header Cart mounted.')
   },
   data: function data() {
     return {
@@ -2769,13 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.fetchCart(); // this.fetchLGAreas();
-    // this.$nextTick(function () {
-    //     window.setInterval(() => {
-    //         this.componentKey++;
-    //         console.log(this.componentKey);
-    //     },5000);
-    // })
+    this.fetchCart();
   },
   methods: {
     fetchCart: function fetchCart() {
@@ -2875,8 +2868,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['productId', 'status'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   data: function name(params) {
     return {
@@ -2939,13 +2931,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.$root.$refs.A = this;
   },
-  mounted: function mounted() {// this.$nextTick(function () {
-    //     // window.setInterval(() => {
-    //         this.componentKey++;
-    //     //     console.log(this.componentKey);
-    //     // },5000);
-    // })
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
       componentKey: 0

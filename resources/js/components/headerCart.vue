@@ -53,7 +53,7 @@
         props: [],
 
         mounted() {
-            console.log('Header Cart mounted.')
+            // console.log('Header Cart mounted.')
         },
 
         data() {
@@ -65,13 +65,6 @@
         },
         created(){
             this.fetchCart();
-            // this.fetchLGAreas();
-            // this.$nextTick(function () {
-            //     window.setInterval(() => {
-            //         this.componentKey++;
-            //         console.log(this.componentKey);
-            //     },5000);
-            // })
         },
 
 
