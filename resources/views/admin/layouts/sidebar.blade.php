@@ -96,7 +96,7 @@
                 </ul>
           </li>{{-- Product Ended --}}
 
-          {{-- Coupon --}}
+           {{-- Coupon --}}
             <li class="nav-item has-treeview {{'coupon' == request()->segment(2) ? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{'coupon' == request()->segment(2) ? 'active' : ''}}">
                     <i class="nav-icon fas fa-tags"></i>
@@ -111,6 +111,26 @@
                         <a href="{{route('admin.coupon.show')}}" class="nav-link {{'coupon' == request()->segment(2) ? 'active' : ''}}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Coupon</p>
+                        </a>
+                    </li>
+                </ul>
+          </li>{{-- Coupon Ended --}}
+
+          {{-- Coupon --}}
+            <li class="nav-item has-treeview {{'payment-method' == request()->segment(2) ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{'payment-method' == request()->segment(2) ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-tags"></i>
+                <p>
+                    Payment Methods
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                {{-- Branch of Starter page --}}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('admin.paymentMethod.show')}}" class="nav-link {{'payment-method' == request()->segment(2) ? 'active' : ''}}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Payment Method</p>
                         </a>
                     </li>
                 </ul>

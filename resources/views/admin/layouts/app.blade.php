@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/storage/images/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/opasceptre/image/upload/v1604537283/icons/favicon_qz0ykx.ico">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

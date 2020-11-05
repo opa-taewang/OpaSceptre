@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\PaymentMethod;
 use App\User;
 use App\State;
 use App\ShippingAddress;
@@ -72,8 +73,9 @@ class ShippingAddressController extends Controller
         }
         $carts = Cart::get();
         $total = Cart::total();
+        $paymentMethods = PaymentMethod::where('payment_status', 1)->get();
         // dd($default_address, $carts, $total);
-        return view('user.checkout', compact('default_address', 'carts', 'total'));
+        return view('user.checkout', compact('default_address', 'carts', 'total', 'paymentMethods'));
     }
 
     public function getStates()

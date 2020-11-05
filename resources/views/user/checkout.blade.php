@@ -131,36 +131,32 @@
             </div><!-- End .col-lg-4 -->
 
             <div class="col-lg-8 order-lg-first">
-                <div class="checkout-payment">
-                    <h2 class="step-title">Payment Method:</h2>
+                <form>
+                    <div class="checkout-payment">
+                        <h2 class="step-title">Payment Method:</h2>
 
-                    <h4>Check / Money order</h4>
+                        <h4>Select Payment Method</h4>
 
-                    <div class="form-group-custom-control">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="change-bill-address" value="1">
-                            <label class="custom-control-label" for="change-bill-address">My billing and shipping address are the same</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .form-group -->
+                        <div class="row">
+                            <h4>Stripe, Paystack and Paypal payment</h4>
 
-                    <div id="checkout-shipping-address">
-                        <address>
-                            Desmond Mason <br>
-                            123 Street Name, City, USA <br>
-                            Los Angeles, California 03100 <br>
-                            United States <br>
-                            (123) 456-7890
-                        </address>
-                    </div><!-- End #checkout-shipping-address -->
+                                <div class="row">
+                                    @foreach ($paymentMethods as $paymentMethod)
+                                        <div class="col-md-4">
+                                        <label>
+                                            <input type="radio" name="payment_method" value="{{$paymentMethod->id}}" checked>
+                                            <img src="https://res.cloudinary.com/opasceptre/image/upload/v1600627348/{{$paymentMethod->payment_logo}}">
+                                        </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        </div><!-- End #new-checkout-address -->
 
-                    <div id="new-checkout-address" class="show">
-                        <h4>Stripe, Paystack and Paypal payment</h4>
-                    </div><!-- End #new-checkout-address -->
-
-                    <div class="clearfix">
-                        <a href="#" class="btn btn-primary float-right">Place Order</a>
-                    </div><!-- End .clearfix -->
-                </div><!-- End .checkout-payment -->
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right">Place Order</button>
+                        </div><!-- End .clearfix -->
+                    </div><!-- End .checkout-payment -->
+                </form>
 
                 <div class="checkout-discount" id="coupon">
                     <h4>
