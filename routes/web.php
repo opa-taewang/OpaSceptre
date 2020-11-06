@@ -59,6 +59,7 @@ Route::post('/shipping-address/{address}', 'ShippingAddressController@update')->
 Route::get('/checkout', 'ShippingAddressController@checkout')->name('checkout');
 Route::get('/states', 'ShippingAddressController@getStates')->name('get.states');
 Route::get('/lgareas/{state}', 'ShippingAddressController@getLGAreas')->name('get.lgareas');
+Route::post('/payment', 'ShippingAddressController@checkout')->name('payment');
 // Order Routes
 
 // Products Front

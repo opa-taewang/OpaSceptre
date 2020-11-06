@@ -39,21 +39,22 @@ class PaymentMethodController extends Controller
                 "width" => 2048,
                 "height" => 1024,
                 "crop" => "scale",
-                "background_removal" => "cloudinary_ai",
                 "use_filename" => true,
                 "folder" => "payment_method/"
             ));
-            $paymentMethod->update(['brand_logo' => $payment_logo['public_id']]) ? toastr($paymentMethod->payment_name.'Logo Updated Successfully', 'success') : toastr($paymentMethod->payment_name.'Logo Updated Successfully failed!', 'failure');
+            $paymentMethod->update(['payment_logo' => $payment_logo['public_id']]) ? toastr($paymentMethod->payment_name.'Logo Updated Successfully', 'success') : toastr($paymentMethod->payment_name.'Logo Updated Successfully failed!', 'failure');
         }
+
         return redirect()->route('admin.paymentMethod.show');
     }
 
     public function updateStatus(PaymentMethod $paymentMethod)
     {
-        $paymentMethod->payment_status = ($paymentMethod->payment_status == 1) ? 0 : 1;
-        dd($paymentMethod->save());
-        ($paymentMethod->status == 1) ? toastr(ucfirst($paymentMethod->payment_name) ." Activated successfully", 'success') :
-            toastr(ucfirst($paymentMethod->payment_name) ." Deactivated successfully", 'success');
-        return $paymentMethod->status;
+        $data = ($paymentMethod->payment_status == 1) ? ['payment_status' => 0] : ['payment_status' => 1];
+        $paymentMethod->update($data);
+        $data['payment_status'] === 1 ?
+            toastr(ucfirst($paymentMethod->payment_name) . " Activated successfully", 'success') :
+            toastr(ucfirst($paymentMethod->payment_name) . " Deactivated successfully", 'success');
+        return $data;
     }
 }

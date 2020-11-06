@@ -131,7 +131,8 @@
             </div><!-- End .col-lg-4 -->
 
             <div class="col-lg-8 order-lg-first">
-                <form>
+                <form method="POST" action="{{route('payment')}}">
+                    @csrf
                     <div class="checkout-payment">
                         <h2 class="step-title">Payment Method:</h2>
 
