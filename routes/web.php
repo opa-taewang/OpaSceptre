@@ -114,12 +114,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::delete('/product/{product}', 'Product\ProductController@delete')->name('product.delete');
         // Payment Mathods
         Route::get('/payment-method', 'PaymentMethodController@show')->name('paymentMethod.show');
-        Route::get('/payment-method/add', 'PaymentMethodController@create')->name('paymentMethod.create');
-        Route::post('/payment-method', 'PaymentMethodController@store')->name('paymentMethod.store');
         Route::get('/payment-method/{paymentMethod}/edit', 'PaymentMethodController@edit')->name('paymentMethod.edit');
-        Route::patch('/payment-method/{paymentMethod}', 'PaymentMethodController@update')->name('paymentMethod.update');
+        Route::post('/payment-method/{paymentMethod}/status', 'PaymentMethodController@updateStatus')->name('paymentMethod.updateStatus');
         Route::patch('/payment-method/{paymentMethod}/image', 'PaymentMethodController@updateImage')->name('paymentMethod.updateImage');
-        Route::delete('/payment-method/{paymentMethod}', 'PaymentMethodController@delete')->name('paymentMethod.delete');
 
         // Ajax Get
         Route::get('get/subcategory/{category}', 'Product\ProductController@getSubCategory')->name('subcategory.get');

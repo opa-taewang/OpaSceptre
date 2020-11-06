@@ -78,6 +78,10 @@ Vue.component('update-address', require('./components/updateAddress.vue').defaul
 Vue.component('default-address', require('./components/makeDefaultAddress.vue').default);
 Vue.component('header-cart', require('./components/headerCart.vue').default);
 Vue.component('render-header-cart', require('./components/renderHeaderCart.vue').default);
+Vue.component('update-payment-status', require('./components/updatePaymentStatus.vue').default);
+
+
+
 
 
 /**
