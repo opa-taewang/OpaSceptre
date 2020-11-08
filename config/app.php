@@ -165,6 +165,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         App\Providers\GlobalFunctionsServiceProvider::class, //Add global functions service provider
+        KingFlamez\Rave\RaveServiceProvider::class, //Flutterwave Service Provider
 
 
 
@@ -235,6 +236,7 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Helper' => App\Helper\Helper::class,
+        'Rave' => KingFlamez\Rave\Facades\Rave::class, //Flutterwaave Aliases
 
     ],
 

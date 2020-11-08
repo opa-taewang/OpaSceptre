@@ -131,7 +131,7 @@
             </div><!-- End .col-lg-4 -->
 
             <div class="col-lg-8 order-lg-first">
-                <form method="POST" action="{{route('payment')}}">
+                <form method="POST" action="{{route('payment.method.select')}}">
                     @csrf
                     <div class="checkout-payment">
                         <h2 class="step-title">Payment Method:</h2>
@@ -139,18 +139,14 @@
                         <h4>Select Payment Method</h4>
 
                         <div class="row">
-                            <h4>Stripe, Paystack and Paypal payment</h4>
-
-                                <div class="row">
-                                    @foreach ($paymentMethods as $paymentMethod)
-                                        <div class="col-md-4">
-                                        <label>
-                                            <input type="radio" name="payment_method" value="{{$paymentMethod->id}}" checked>
-                                            <img src="https://res.cloudinary.com/opasceptre/image/upload/v1600627348/{{$paymentMethod->payment_logo}}">
-                                        </label>
-                                        </div>
-                                    @endforeach
+                            @foreach ($paymentMethods as $paymentMethod)
+                                <div class="col-md-4">
+                                <label>
+                                    <input type="radio" name="payment_method" value="{{$paymentMethod->id}}" checked>
+                                    <img src="https://res.cloudinary.com/opasceptre/image/upload/v1600627348/{{$paymentMethod->payment_logo}}">
+                                </label>
                                 </div>
+                            @endforeach
                         </div><!-- End #new-checkout-address -->
 
                         <div class="clearfix">

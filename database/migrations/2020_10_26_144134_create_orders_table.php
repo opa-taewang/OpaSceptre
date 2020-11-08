@@ -22,6 +22,8 @@ class CreateOrdersTable extends Migration
             $table->float('shipping_fee', 15, 2);
             $table->float('subtotal', 15, 2);
             $table->float('order_price', 15, 2);
+            $table->bigInteger('order_payment_method');
+            $table->boolean('order_payment_status')->default(false);
             $table->bigInteger('order_status');
             $table->timestamps();
         });

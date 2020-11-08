@@ -59,11 +59,15 @@ Route::post('/shipping-address/{address}', 'ShippingAddressController@update')->
 Route::get('/checkout', 'ShippingAddressController@checkout')->name('checkout');
 Route::get('/states', 'ShippingAddressController@getStates')->name('get.states');
 Route::get('/lgareas/{state}', 'ShippingAddressController@getLGAreas')->name('get.lgareas');
-Route::post('/payment', 'ShippingAddressController@checkout')->name('payment');
+// Payment
+Route::post('/payment', 'PaymentController@paymentMethod')->name('payment.method.select');
+// Route::get('/pay-page/rave', 'RaveController@initialize')->name('pay.page.rave');
+Route::post('/pay/rave', 'RaveController@initialize')->name('pay.rave');
+Route::any('/rave/callback', 'RaveController@callback')->name('rave.callback');
 // Order Routes
 
 // Products Front
-Route::get('/product-quick-view/{product}', 'ProductController@quickview')->name('quickview');
+Route::get('/anyuct-quick-view/{product}', 'ProductController@quickview')->name('quickview');
 Route::get('/product/{product}', 'ProductController@singleProduct')->name('singleProduct');
 Route::get('/product-colour-size/{product}', 'ProductController@productColourSize')->name('productColourSize.get');
 Route::get('/category/{category}/subcategory/{subcategory}', 'ProductController@categoryGet')->name('category.get');

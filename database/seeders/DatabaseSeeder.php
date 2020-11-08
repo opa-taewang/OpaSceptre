@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             SubCategoriesTableSeeder::class,
             StatesTableSeeder::class,
-            LGAreasTableSeeder::class
+            LGAreasTableSeeder::class,
+            OrderStatusesTableSeeder::class
         ]);
     }
 }
