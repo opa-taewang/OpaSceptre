@@ -27,24 +27,9 @@ class RaveController extends Controller
         $data = json_decode(request()->resp);
         if($data->data->data && isset($data->data->data->txRef))
         {
-            // $ver = Rave::verifyTransaction($data->data->data->txRef);
-            $oda = $this->verify($data->data->data->txRef);
+            $payment_confirmation = $this->verify($data->data->data->txRef);
+            return $payment_confirmation ? redirect()->route('payment.success') : redirect()->route('payment.failure');
         }
-        // dd(request()->txRef);
-        // dd($data['resp']);
-
-        // dd($data);
-        // Get the transaction from your DB using the transaction reference (txref)
-        // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
-        // Comfirm that the transaction is successful
-        // Confirm that the chargecode is 00 or 0
-        // Confirm that the currency on your db transaction is equal to the returned currency
-        // Confirm that the db transaction amount is equal to the returned amount
-        // Update the db transaction record (includeing parameters that didn't exist before the transaction is completed. for audit purpose)
-        // Give value for the transaction
-        // Update the transaction to note that you have given value for the transaction
-        // You can also redirect to your success page from here
-
     }
 
     /**
@@ -53,30 +38,21 @@ class RaveController extends Controller
      */
     public function verify($txref)
     {
-        // $txref = "opasceptre_5fa70d150bb77";
-
         $data = Rave::verifyTransaction($txref);
-        dd($data);
 
         $chargeResponsecode = $data->data->chargecode;
         $chargeAmount = $data->data->amount;
         $chargeCurrency = $data->data->currency;
+        $customerEmail = $data->data->custemail;
 
-        $amount = 5000;
+        $amount = OrderController::OrderAmount($txref);
         $currency = "NGN";
-        if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
-            dd('Transaction Successfull');
-            // transaction was successful...
-            // please check other things like whether you already gave value for this ref
-            // if the email matches the customer who owns the product etc
+        if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency) && ($customerEmail == auth()->user()->email)) {
+            OrderController::updatePaymentSuccess($txref);
             //Give Value and return to Success page
-
-            return redirect('/success');
+            return true;
         } else {
-            dd('Transaction failed');
-            //Dont Give Value and return to Failure page
-
-            return redirect('/failed');
+            return false;
         }
     }
 }

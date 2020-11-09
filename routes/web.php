@@ -61,7 +61,9 @@ Route::get('/states', 'ShippingAddressController@getStates')->name('get.states')
 Route::get('/lgareas/{state}', 'ShippingAddressController@getLGAreas')->name('get.lgareas');
 // Payment
 Route::post('/payment', 'PaymentController@paymentMethod')->name('payment.method.select');
-// Route::get('/pay-page/rave', 'RaveController@initialize')->name('pay.page.rave');
+Route::get('/payment/success', 'PaymentController@paymentSuccess')->name('payment.success');
+Route::get('/payment/failure', 'PaymentController@paymentFailure')->name('payment.failure');
+//Payment Rave
 Route::post('/pay/rave', 'RaveController@initialize')->name('pay.rave');
 Route::any('/rave/callback', 'RaveController@callback')->name('rave.callback');
 // Order Routes
