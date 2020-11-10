@@ -166,6 +166,7 @@ return [
         Yoeunes\Toastr\ToastrServiceProvider::class,
         App\Providers\GlobalFunctionsServiceProvider::class, //Add global functions service provider
         KingFlamez\Rave\RaveServiceProvider::class, //Flutterwave Service Provider
+        Unicodeveloper\Paystack\PaystackServiceProvider::class, //Paystack Service Provider
 
 
 
@@ -237,6 +238,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Helper' => App\Helper\Helper::class,
         'Rave' => KingFlamez\Rave\Facades\Rave::class, //Flutterwaave Aliases
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class, //Paystack Aliases
 
     ],
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\OrderSuccessMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Cart
 Route::post('/cart/{product}', 'CartController@addcart')->name('addtocart');
 Route::post('/cart/check/{product}', 'CartController@CartAdd');
-Route::get('/cart/check1/{product}', 'CartController@CartAdd');
+// Route::get('/cart/{product}', 'CartController@addcart');
 Route::post('/cart/update/{product}', 'CartController@CartUpdate');
 // Route::get('/cartq/update/{product}', 'CartController@CartUpdate');
 Route::get('/cart/add/{product}', 'CartController@addcart')->name('addtocartfast');
@@ -65,8 +66,13 @@ Route::get('/payment/success', 'PaymentController@paymentSuccess')->name('paymen
 Route::get('/payment/failure', 'PaymentController@paymentFailure')->name('payment.failure');
 //Payment Rave
 Route::post('/pay/rave', 'RaveController@initialize')->name('pay.rave');
-Route::any('/rave/callback', 'RaveController@callback')->name('rave.callback');
+Route::match(['post', 'get'],'/rave/callback', 'RaveController@callback')->name('rave.callback');
 // Order Routes
+// Email Route
+Route::get('/order-success-email', function () {
+    return new OrderSuccessMail('opasceptre_5868413822');
+});
+Route::get('/payment/failure', 'PaymentController@paymentFailure')->name('payment.failure');
 
 // Products Front
 Route::get('/anyuct-quick-view/{product}', 'ProductController@quickview')->name('quickview');

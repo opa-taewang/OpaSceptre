@@ -27,13 +27,16 @@ class CartController extends Controller
     {
 
         $price = isset($product->discount_price) ? $product->discount_price : $product->selling_price;
+        $product_size = explode(',', $product->product_size,);
+        $product_colour = explode(',', $product->product_colour,);
+        // dd($product_colour, $product_size);
         $data = [
             'product_id' => $product->id,
             'product_name'=> $product->product_name,
             'product_quantity' => 1,
             'product_price' => $price,
-            'product_size' => $product->product_size,
-            'product_colour' => $product->product_size,
+            'product_size' => $product_size[0],
+            'product_colour' => $product_colour[0],
             'product_image' => $product->image_one,
         ];
         $cart = Cart::add($data);
@@ -62,7 +65,7 @@ class CartController extends Controller
             'product_quantity' => $quantity,
             'product_price' => $price * $quantity,
             'product_size' => $product->product_size,
-            'product_colour' => $product->product_size,
+            'product_colour' => $product->product_colour,
             'product_image' => $product->image_one,
         ];
         $cart = Cart::add($data);
@@ -126,6 +129,13 @@ class CartController extends Controller
         Session::forget($coupon_name);
         toastr('Coupon removed successfully', 'success');
         return redirect()->back();
+    }
+
+    public function cartClear()
+    {
+        Cart::select()
+        ->where('user_id', auth()->id())
+        ->delete();
     }
 
 }

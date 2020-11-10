@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\OrderSuccessMail;
 use KingFlamez\Rave\Facades\Rave;
+use Illuminate\Support\Facades\Mail;
 
 class RaveController extends Controller
 {
@@ -49,6 +51,8 @@ class RaveController extends Controller
         $currency = "NGN";
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency) && ($customerEmail == auth()->user()->email)) {
             OrderController::updatePaymentSuccess($txref);
+            (new CartController)->cartClear();
+            Mail::to($customerEmail)->send(new OrderSuccessMail($txref));
             //Give Value and return to Success page
             return true;
         } else {

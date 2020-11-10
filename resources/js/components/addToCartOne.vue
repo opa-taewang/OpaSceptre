@@ -5,7 +5,6 @@
         </div>
     </div>
 </template>
-// data-toggle="modal" data-target="#addCartModal"
 <script>
     export default {
         props: ['productId', 'status'],
