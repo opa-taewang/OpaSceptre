@@ -132,6 +132,7 @@
             <div class="col-lg-8 order-lg-first">
                 <form method="POST" action="{{route('payment.method.select')}}">
                     @csrf
+                    <input type="hidden" name="orderID" value="345">
                     <input type="hidden" name="amount" value="{{$order_total}}" /> <!-- Replace the value with your transaction amount -->
                     <input type="hidden" name="country" value="NG" /> <!-- Replace the value with your transaction country -->
                     <input type="hidden" name="currency" value="NGN" /> <!-- Replace the value with your transaction currency -->

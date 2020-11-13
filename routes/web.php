@@ -67,6 +67,9 @@ Route::get('/payment/failure', 'PaymentController@paymentFailure')->name('paymen
 //Payment Rave
 Route::post('/pay/rave', 'RaveController@initialize')->name('pay.rave');
 Route::match(['post', 'get'],'/rave/callback', 'RaveController@callback')->name('rave.callback');
+//Payment Paystack
+Route::post('/pay/paystack', 'PayStackController@redirectToGateway')->name('pay.paystack');
+Route::get('/payment/callback', 'PayStackController@handleGatewayCallback')->name('paystack.callback');
 // Order Routes
 // Email Route
 Route::get('/order-success-email', function () {

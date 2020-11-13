@@ -50,11 +50,8 @@ class RaveController extends Controller
         $amount = OrderController::OrderAmount($txref);
         $currency = "NGN";
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency) && ($customerEmail == auth()->user()->email)) {
-            OrderController::updatePaymentSuccess($txref);
-            (new CartController)->cartClear();
-            Mail::to($customerEmail)->send(new OrderSuccessMail($txref));
-            //Give Value and return to Success page
-            return true;
+            return (new PaymentController)->paid($txref, $customerEmail);
+            // return true;
         } else {
             return false;
         }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\OrderSuccessMail;
 use KingFlamez\Rave\Facades\Rave;
+use Illuminate\Support\Facades\Mail;
+use Unicodeveloper\Paystack\Paystack;
 // use App\Http\Controllers\RaveController;
 
 class PaymentController extends Controller
@@ -21,10 +24,10 @@ class PaymentController extends Controller
             'country' => $request->country,
             'currency' => $request->currency,
             'email' => $request->email,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phonenumber' => $request->phonenumber,
-            'ref' => $request->ref
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'phone' => $request->phonenumber,
+            'reference' => $request->ref
         ];
         $order = [
             'user_id' => auth()->id(),
@@ -36,17 +39,17 @@ class PaymentController extends Controller
             'subtotal' => $request->sub_total,
             'order_price' => $data['amount'],
             'order_payment_method' =>  $request->payment_method,
-            'order_payment_reference' => $data['ref'],
+            'order_payment_reference' => $data['reference'],
             'order_status' => 1
         ];
         OrderController::move($order);
-        // dd($order);
         if($order['order_payment_method'] == 'flutterwave'){
-            $_POST = $data;
-            // $raveController = new RaveController();
+            // $_POST = $data;
             (new RaveController)->initialize();
         }elseif($order['order_payment_method'] == 'paystack'){
-            $this->paystack();
+            // return view('pay');
+            $data['callback_url'] = route('paystack.callback');
+            dd((new PayStackController)->paystack_standard($data));
         }
     }
 
@@ -59,5 +62,17 @@ class PaymentController extends Controller
     {
         toastr('Payment Failed', 'failure');
         return view('user.payment-message.failure');
+    }
+
+    public function paid($trxRef, $customerEmail)
+    {
+        if(OrderController::updatePaymentSuccess($trxRef))
+        {
+            (new CartController)->cartClear();
+            Mail::to($customerEmail)->send(new OrderSuccessMail($trxRef));
+            //Give Value and return to Success page
+            return true;
+        }
+        return false;
     }
 }
