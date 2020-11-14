@@ -72,6 +72,11 @@ class ShippingAddressController extends Controller
             return redirect()->route('shippingAddress');
         }
         $carts = Cart::get();
+        if(!$carts->count())
+        {
+            toastr('Your cart is empty, There is nothing to checkout', 'failure');
+            return redirect()->route('cart.show');
+        }
         $total = Cart::total();
         $paymentMethods = PaymentMethod::where('payment_status', 1)->get();
         // dd($default_address, $carts, $total);

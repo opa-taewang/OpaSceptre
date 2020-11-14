@@ -134,6 +134,7 @@
                     @csrf
                     <input type="hidden" name="orderID" value="345">
                     <input type="hidden" name="amount" value="{{$order_total}}" /> <!-- Replace the value with your transaction amount -->
+                    <input type="hidden" name="quantity" value="{{$total->cart_quantity}}" /> <!-- Replace the value with your transaction amount -->
                     <input type="hidden" name="country" value="NG" /> <!-- Replace the value with your transaction country -->
                     <input type="hidden" name="currency" value="NGN" /> <!-- Replace the value with your transaction currency -->
                     <input type="hidden" name="description" value="New food" /> <!-- Replace the value with your transaction description -->
