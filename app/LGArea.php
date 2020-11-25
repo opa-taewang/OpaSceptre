@@ -15,4 +15,9 @@ class LGArea extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function shippingaddresses()
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
 }

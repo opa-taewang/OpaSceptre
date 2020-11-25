@@ -18,6 +18,7 @@ require('admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js
 require('admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')
 require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js')
 require('admin-lte/plugins/summernote/summernote-bs4.min.js')
+require('admin-lte/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
 
 // Sweet Alert
 require("sweetalert")

@@ -78,5 +78,12 @@
 @toastr_js
 
 @toastr_render
+
+<script>
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+</script>
 </body>
 </html>

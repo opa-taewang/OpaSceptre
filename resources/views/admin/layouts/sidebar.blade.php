@@ -96,6 +96,26 @@
                 </ul>
           </li>{{-- Product Ended --}}
 
+          {{-- Order --}}
+            <li class="nav-item has-treeview {{'order' == request()->segment(2) ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{'order' == request()->segment(2) ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                    Order
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                {{-- Branch of Starter page --}}
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('admin.order.index')}}" class="nav-link {{'admin/order' == request()->path() ? 'active' : ''}}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View Order</p>
+                        </a>
+                    </li>
+                </ul>
+          </li>{{-- Order Ended --}}
+
            {{-- Coupon --}}
             <li class="nav-item has-treeview {{'coupon' == request()->segment(2) ? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{'coupon' == request()->segment(2) ? 'active' : ''}}">

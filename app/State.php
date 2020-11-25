@@ -13,4 +13,9 @@ class State extends Model
     {
         return $this->hasMany(LGArea::class);
     }
+
+    public function shippingaddresses()
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
 }

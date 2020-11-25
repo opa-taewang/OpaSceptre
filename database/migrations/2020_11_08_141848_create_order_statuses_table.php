@@ -16,7 +16,7 @@ class CreateOrderStatusesTable extends Migration
     {
         Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('order_status_name')->unique();
             $table->timestamps();
         });
     }

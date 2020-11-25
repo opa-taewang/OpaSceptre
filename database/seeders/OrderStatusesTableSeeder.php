@@ -16,32 +16,32 @@ class OrderStatusesTableSeeder extends Seeder
     {
         DB::table('order_statuses')->insert([
             'id' => 1,
-            'name' => 'Pending',
+            'order_status_name' => 'Pending',
         ]);
 
         DB::table('order_statuses')->insert([
             'id' => 2,
-            'name' => 'Ordered',
+            'order_status_name' => 'Ordered',
         ]);
 
         DB::table('order_statuses')->insert([
             'id' => 3,
-            'name' => 'Shipping',
+            'order_status_name' => 'Shipping',
         ]);
 
         DB::table('order_statuses')->insert([
             'id' => 4,
-            'name' => 'Shipped',
+            'order_status_name' => 'Shipped',
         ]);
 
         DB::table('order_statuses')->insert([
             'id' => 5,
-            'name' => 'Delivered',
+            'order_status_name' => 'Delivered',
         ]);
 
         DB::table('order_statuses')->insert([
             'id' => 6,
-            'name' => 'Returned',
+            'order_status_name' => 'Returned',
         ]);
     }
 }

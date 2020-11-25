@@ -143,6 +143,15 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
         Route::patch('/coupon/{coupon}', 'Coupon\CouponController@update')->name('coupon.update');
         Route::delete('/coupon/{coupon}', 'Coupon\CouponController@delete')->name('coupon.delete');
 
+        // Order
+        Route::get('/order', 'Order\OrderController@index')->name('order.index');
+        Route::get('/order/{order}', 'Order\OrderController@show')->name('order.show');
+        Route::post('/order/{order}/invoice', 'Order\OrderController@sendInvoice')->name('order.send.invoice');
+        Route::get('/order/{order}/edit', 'Order\OrderController@edit')->name('order.edit');
+        Route::patch('/order/{order}/payment-status', 'Order\OrderController@updatePaymentStatus')->name('order.update.payment.status');
+        Route::patch('/order/{order}', 'Order\OrderController@updateOrderStatus')->name('order.update.order.status');
+        Route::delete('/order/{order}', 'Order\OrderController@delete')->name('order.delete');
+
         // Others
         Route::get('/newsletter', 'Others\OthersController@newsletter')->name('newsletter.show');
         Route::get('/newsletter/{newsletter}/edit', 'Others\OthersController@newsletterEdit')->name('newsletter.edit');

@@ -22,4 +22,14 @@ class ShippingAddress extends Model
     {
         return $this->hasMany(Order::class, 'shipping_address_id');
     }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function lgarea()
+    {
+        return $this->belongsTo(LGArea::class);
+    }
 }
