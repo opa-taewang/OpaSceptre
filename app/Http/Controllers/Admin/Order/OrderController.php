@@ -70,11 +70,7 @@ class OrderController extends Controller
     {
         $email = Mail::to($order->user->email)->send(new OrderSuccessMail($order->order_payment_reference));
         // dd(Mail::sent());
-        if($email){
-            toastr('Invoice sent to Successfully','success');
-        }else{
-            toastr('Sending Invoice Failed', 'failure');
-        }
+        toastr('Invoice sent to Successfully','success');
         return redirect()->back();
 
     }

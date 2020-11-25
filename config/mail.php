@@ -13,8 +13,9 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
-    // 'driver' => env('MAIL_DRIVER', 'smtp'),
+    'default' => env('MAIL_MAILER', 'mailgun'),
+    // 'driver' => (env('APP_ENV') === 'production') ? env('MAIL_DRIVER', 'mailgun'): '',
+    // 'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
