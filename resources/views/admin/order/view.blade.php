@@ -33,7 +33,7 @@
                     </div>
                     <div class="ml-auto">
                         <a class="btn btn-info" href="{{route('admin.product.index')}}">View All</a>
-                        <a class="btn btn-info" href="{{route('admin.order.edit', $order)}}">Edit Product</a>
+                        <a class="btn btn-info" href="{{route('admin.order.edit', $order)}}">Edit Order</a>
                     </div>
                 </div>
               </div>

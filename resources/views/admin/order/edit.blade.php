@@ -32,7 +32,8 @@
                         <h3 class="card-title">Update Product</h3>
                     </div>
                     <div class="ml-auto">
-                        <a class="btn btn-info" href="{{route('admin.order.index')}}">View All</a>
+                        <a class="btn btn-info" href="{{route('admin.product.index')}}">View All</a>
+                        <a class="btn btn-info" href="{{route('admin.order.show', $order)}}">View Order</a>
                     </div>
                 </div>
               </div>
@@ -67,15 +68,20 @@
                         </form>
                     </div>
 
+                    {{-- Payment Status --}}
                     <div class="col-md-6">
                         <form method="post" action="{{route('admin.order.update.payment.status', $order->id)}}">
                             @method('patch')
                             @csrf
                             <div class="col-md-12">
-                                {{-- Image One --}}
                                 <div class="form-group">
-                                    <label for="paymentStatus">Order Payment Status:&nbsp;<span class="text-danger">*</span></label>
-                                    <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success" id="paymentStatus">
+                                    <label for="paymentStatus" class="pb-2" class="@error('payment_status') is-invalid @enderror">Order Payment Status:&nbsp;<span class="text-danger">*</span></label><br>
+                                    <input type="checkbox" name="payment_status" data-bootstrap-switch data-off-color="danger" data-on-color="success" value="1" id="paymentStatus"{{$order->order_payment_status == '1' ? 'checked' : ''}}>
+                                    @error('payment_status')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

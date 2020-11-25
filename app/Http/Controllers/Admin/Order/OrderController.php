@@ -56,14 +56,34 @@ class OrderController extends Controller
         return redirect()->route('admin.order.show');
     }
 
-    public function updateOrderStatus(Order $order)
+    public function updateOrderStatus(Order $order, Request $request)
     {
-
+        $request->validate([
+            'order_status' => ['numeric','between:1,6'],
+        ]);
+        if($order->order_status == $request->input('order_status')){
+            toastr('There is nothing to update', 'failure');
+        }
+        else{
+            $order->order_status = $request->input('order_status');
+            $order->save() ? toastr('Order status updated successfully', 'success') : toastr('Order status update failed', 'failure');
+        }
+        return redirect()->back();
     }
 
-    public function updatePaymentStatus(Order $order)
+    public function updatePaymentStatus(Order $order, Request $request)
     {
-
+        $request->validate([
+            'payment_status' => ['nullable','numeric','size:1'],
+        ]);
+        $payment_status = $request->input('payment_status') == 1 ? 1 : 0;
+        if ($order->order_payment_status === $payment_status) {
+            toastr('There is nothing to update', 'failure');
+        } else {
+            $order->order_payment_status = $payment_status;
+            $order->save() ? toastr('Order status updated successfully', 'success') : toastr('Order status update failed', 'failure');
+        }
+        return redirect()->back();
     }
 
     public function sendInvoice(Order $order)
@@ -72,6 +92,5 @@ class OrderController extends Controller
         // dd(Mail::sent());
         toastr('Invoice sent to Successfully','success');
         return redirect()->back();
-
     }
 }
