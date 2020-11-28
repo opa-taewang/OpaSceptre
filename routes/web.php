@@ -91,6 +91,20 @@ Route::get('/cart/{product}/move', 'WishlistController@moveCartToWishlist')->nam
 // Frontend Settings
 Route::post('/newsletter', 'FrontendController@newsletterStore')->name('newsletter.store');
 Route::get('/product', 'FrontendController@getSubCategory')->name('subcategory.get');
+
+// Account
+Route::get('/account/dashboard', 'AccountController@dashboard')->name('account.dashboard');
+Route::get('/account/update', 'AccountController@update')->name('account.update');
+Route::patch('/account/update/infomation', 'AccountController@updateInformation')->name('account.update.infomation');
+Route::post('/account/generate/otp', 'AccountController@generateOTP')->name('account.generate.otp');
+Route::patch('/account/update/email', 'AccountController@updateEmail')->name('account.update.email');
+Route::patch('/account/update/password', 'AccountController@updatePassword')->name('account.update.password');
+Route::patch('/account/update/newsletter', 'AccountController@updateNewsletter')->name('account.update.newsletter');
+Route::get('/account/order', 'AccountController@order')->name('account.order');
+Route::get('/account/order/{order}', 'AccountController@orderDetails')->name('account.order.details');
+Route::get('/account/address', 'AccountController@address')->name('account.address');
+
+
 // Admin route
 Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']],
     function(){

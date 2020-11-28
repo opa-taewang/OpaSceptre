@@ -73,6 +73,13 @@
     @toastr_render
     @include('sweetalert::alert')
 
+    @if(Session::has('otp_generated'))
+        <script>
+            $(function() {
+                $('#otpInput').modal('show');
+            });
+        </script>
+    @endif
     {{-- <script>
         $(document).ready(function() {
 

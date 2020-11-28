@@ -39,7 +39,7 @@
                             <li class="menu-item narrow"><a href="{{route('cart.show')}}">Cart</a></li>
                             <li class="menu-item">
                                 @auth
-                                    <a href="/account">My Account</a>
+                                    <a href="{{route('account.dashboard')}}">My Account</a>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
