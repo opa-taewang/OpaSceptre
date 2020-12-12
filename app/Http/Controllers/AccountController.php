@@ -6,6 +6,7 @@ use App\OTP;
 use App\User;
 use App\Order;
 use App\Rules\OTPExists;
+use App\ShippingAddress;
 use App\Rules\OTPExpired;
 use Illuminate\Http\Request;
 use App\Mail\OneTimePasswordMail;
@@ -123,18 +124,30 @@ class AccountController extends Controller
 
     public function updateInformation(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'first_name' => ['required', 'min:2,', 'alpha'],
             'middle_name' => ['required', 'min:2,', 'alpha'],
             'last_name' => ['required', 'min:2', 'alpha'],
         ]);
-
+        $user = User::find(Auth::user()->id);
+        if(($request->input('first_name') === $user->first_name) && ($request->input('middle_name') === $user->middle_name) && ($request->input('last_name') === $user->last_name)){
+            toastr('There is nothing to update', 'failure');
+        }else{
+            $user->update($data);
+            toastr('Details Updated Successfully', 'success');
+        }
         return redirect()->back();
     }
 
     public function order()
     {
-        return view('user.account.order');
+        $orders = DB::table('orders')
+                    ->where('orders.user_id', Auth::id())
+                    ->join('order_statuses', 'order_statuses.id', '=', 'orders.order_status')
+                    ->select('orders.*', 'order_statuses.order_status_name')
+                    ->orderBy('orders.created_at', 'desc')
+                    ->get();
+        return view('user.account.order', compact('orders'));
     }
 
     public function orderDetails(Order $order)
@@ -144,6 +157,12 @@ class AccountController extends Controller
 
     public function address()
     {
-        return view('user.account.address');
+        $shipping_addresses = ShippingAddress::where('shipping_addresses.user_id', Auth::id())
+            ->join('states', 'states.id', '=', 'shipping_addresses.state_id')
+            ->join('lgareas', 'lgareas.id', '=', 'shipping_addresses.lgarea_id')
+            ->select('shipping_addresses.*', 'states.state_name', 'lgareas.lgarea_name', 'lgareas.shipping_fee')
+            ->orderByDesc('shipping_addresses.address_default')
+            ->get();
+        return view('user.account.address', compact('shipping_addresses'));
     }
 }
